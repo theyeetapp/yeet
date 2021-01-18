@@ -15,8 +15,8 @@
                         financial market monitoring made simple. easily keep track of your stock and crypto-currency portfolios
                     </p>
                     <div class='flex'>
-                        <a href='/auth/signup' class='py-5 px-8 text-white shadow-md mr-4' style='width:fit-content'>Signup</a>
-                        <a href='/auth/signup' class='py-5 px-8 text-white shadow-md' style='width:fit-content'>Login</a>
+                        <a href='/signup' class='py-5 px-8 text-white shadow-md mr-4' style='width:fit-content'>Signup</a>
+                        <a href='/login' class='py-5 px-8 text-white shadow-md' style='width:fit-content'>Login</a>
                     </div>
                 </div>
                 <div class='col-span-7 relative'>
@@ -75,9 +75,9 @@
             </div>
         </div>
         <div class='bg-yeet-blue grid grid-cols-12 p-20 text-white'>
-            <div class='col-span-4 flex flex-col pr-10'>
+            <div class='col-span-4 flex flex-col px-10'>
                 <p class='m-0 mb-2 text-xl'>Yeet</p>
-                <p class='m-0'>Providing ease in share price tracking and monitoring by leveraging core technologies. Through this, decide whether to short, put or go long on a stock.</p>
+                <p class='m-0'>Providing ease in share price tracking and monitoring by leveraging core technologies. Stay updated with your favorite stocks and cryptocurrencies.</p>
             </div>
             <div class='col-start-5 col-span-4 flex flex-col pl-20'>
                 <p class='m-0 mb-3 text-xl'>Contact</p>
@@ -94,7 +94,7 @@
                     support@yeet.app
                 </p>
             </div>
-            <div class='col-start-9 col-span-3 pl-24 ml-4 flex flex-col'>
+            <div class='col-start-9 col-span-3 pl-24 ml-6 flex flex-col'>
                 <p class='m-0 mb-3 text-xl'>Social Media</p>
                 <p class='m-0 mb-3'>
                     <i class='fab fa-facebook mr-3'></i>

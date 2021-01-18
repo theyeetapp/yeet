@@ -1,0 +1,16 @@
+
+.auth__container
+{
+    width:400px
+}
+
+.auth__container input
+{
+    border-color:rgba(0,0,0,0.14);
+    transition:border-color 500ms ease-in;
+}
+
+.auth__container input:focus
+{
+    border-color:#1D439B;
+}
