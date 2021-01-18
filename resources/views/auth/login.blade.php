@@ -11,6 +11,10 @@
 
 @section('body')
 <div class='w-screen h-screen flex flex-row justify-center items-center work-sans bg-yeet-blue'>
+    <div class='absolute top-0 left-0 w-screen flex text-white pt-12 px-6 bsm:px-10'>
+        <p class='m-0 text-lg mr-auto'><a href='/'>Yeet</a></p>
+        <p class='m-0 text-lg'><a href='/login'>Signup</a></p>
+    </div>
         <div class='auth__container flex flex-col'>
             <form class='relative bg-white rounded p-8' action='/login' method='POST'>
                 @CSRF
@@ -26,7 +30,7 @@
                     <input type='password' id='password' class='focus:outline-none p-3 border' placeholder="Password">
                 </div>
                 <div class='mb-4'>
-                    <button type='submit' class='hover:bg-yeet-blue transition-colors duration-500 ease-in py-4 text-white bg-yeet-light-blue w-full'>Login</button>
+                    <button type='submit' class='hover:bg-yeet-blue transition-colors duration-500 ease-in py-4 text-white bg-yeet-light-blue w-full'>Login to Yeet</button>
                 </div>
                 <div class='mb-10'>
                     <p class='m-0 text-sm text-gray-700 text-center'>login with <a href='' class='text-blue-700'>Google</a> instead</p>
