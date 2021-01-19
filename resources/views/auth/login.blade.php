@@ -13,14 +13,14 @@
 <div class='w-screen h-screen flex flex-row justify-center items-center work-sans bg-yeet-blue'>
     <div class='absolute top-0 left-0 w-screen flex text-white pt-12 px-6 bsm:px-10'>
         <p class='m-0 text-lg mr-auto'><a href='/'>Yeet</a></p>
-        <p class='m-0 text-lg'><a href='/login'>Signup</a></p>
+        <p class='m-0 text-lg'><a href='/signup'>Signup</a></p>
     </div>
         <div class='auth__container flex flex-col'>
             <form class='relative bg-white rounded p-8' action='/login' method='POST'>
                 @CSRF
                 <div class='flex flex-col mb-4'>
                     <label for='email' class='text-gray-800 mb-2'>Email</label>
-                    <input type='email' id='email' class='focus:outline-none p-3 border' placeholder="Email">
+                    <input type='email' id='email' class='focus:outline-none p-3 border' placeholder="Email" autoFocus>
                 </div>
                 <div class='flex flex-col mb-6'>
                     <div class='flex flex-row justify-between items-end mb-2'>

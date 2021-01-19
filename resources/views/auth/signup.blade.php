@@ -20,7 +20,7 @@
                 @CSRF
                 <div class='flex flex-col mb-4'>
                     <label for='name' class='text-gray-800 mb-2'>Name</label>
-                    <input type='text' id='name' class='focus:outline-none p-3 border' placeholder="Full Name">
+                    <input type='text' id='name' class='focus:outline-none p-3 border' placeholder="Full Name" autoFocus>
                 </div>
                 <div class='flex flex-col mb-4'>
                     <label for='email' class='text-gray-800 mb-2'>Email</label>
