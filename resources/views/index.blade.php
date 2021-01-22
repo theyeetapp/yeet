@@ -51,6 +51,7 @@
             </div>
             <div class='hidden lg:block col-span-7 relative'>
                 <img src='/images/home/hero.jpg' class='object-cover absolute top-0 left-0 w-full h-full'>
+                <div class='absolute top-0 left-0 w-full h-full' style='background:rgba(0,0,0,0.15)'></div>
             </div>
         </div>
         <div class='sm:py-24 px-6 sm:px-16 md:px-24 lg:px-64'>
