@@ -22,6 +22,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    protected $attributes = [
+        'avatar' => null,
+        'telegram_id' => null
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

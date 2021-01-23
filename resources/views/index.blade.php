@@ -45,8 +45,8 @@
                     financial market monitoring made simple. <p class='m-0 hidden sm:inline'>easily keep track of your stock and crypto-currency portfolios</p>
                 </div>
                 <div class='flex'>
-                    <a href='/signup' class='py-5 px-8 text-white shadow-md mr-4' style='width:fit-content'>Signup</a>
-                    <a href='/login' class='py-5 px-8 text-white shadow-md' style='width:fit-content'>Login</a>
+                    <a href='{{ route("signup") }}' class='py-5 px-8 text-white shadow-md mr-4' style='width:fit-content'>Signup</a>
+                    <a href='{{ route("login") }}' class='py-5 px-8 text-white shadow-md' style='width:fit-content'>Login</a>
                 </div>
             </div>
             <div class='hidden lg:block col-span-7 relative'>

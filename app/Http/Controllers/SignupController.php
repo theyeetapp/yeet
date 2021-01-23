@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class SignupController extends Controller
 {
@@ -10,7 +12,32 @@ class SignupController extends Controller
         return view('auth.signup');
     }
 
-    public function signup() {
+    public function signup(Request $request) {
+        
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8']
+        ]);
 
+        $name = $request->name;
+        $email = $request->email;
+        $password = $request->password;
+
+        $user = User::firstWhere('email', $email);
+
+        if($user) {
+            $request->session()->flash('error', 'user with email exists');
+            return back()->withInput();
+        }
+
+        User::create([
+            'name' => $name,
+            'email' => $email,
+            'password' => Hash::make($password)
+        ]);
+
+        $request->session()->flash('message', 'continue at your email');
+        return back();
     }
 }

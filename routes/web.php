@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +16,17 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::view('/', 'index');
+Route::middleware('guest')->group(function() {
+    
+    Route::view('/', 'index')->name('index');
 
-Route::get('/signup', [SignupController::class, 'show']);
-Route::post('/signup', [SignupController::class, 'signup']);
+    Route::get('/signup', [SignupController::class, 'show'])->name('signup');
+    Route::post('/signup', [SignupController::class, 'signup']);
 
-Route::get('/login', [LoginController::class, 'show']);
-Route::post('/login', [LoginController::class], 'login');
+    Route::get('/login', [LoginController::class, 'show'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+}); 
+
+Route::middleware('auth')->group(function() {
+    Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+});
