@@ -1,9 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignupController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SubscriptionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,10 +25,13 @@ Route::middleware('guest')->group(function() {
     Route::get('/signup', [SignupController::class, 'show'])->name('signup');
     Route::post('/signup', [SignupController::class, 'signup']);
 
-    Route::get('/login', [LoginController::class, 'show'])->name('login');
-    Route::post('/login', [LoginController::class, 'login']);
+    Route::get('/login', [AuthController::class, 'show'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
 }); 
 
 Route::middleware('auth')->group(function() {
-    Route::get('/dashboard', [DashboardController::class, 'show'])->name('dashboard');
+    Route::get('/subscriptions', [SubscriptionsController::class, 'show'])->name('subscriptions');
+    Route::get('/stocks', [DashboardController::class, 'stocks'])->name('stocks');
+    Route::get('/crypto', [DashboardController::class, 'crypto'])->name('crypto');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
