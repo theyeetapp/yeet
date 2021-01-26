@@ -7,13 +7,24 @@ use Illuminate\Http\Request;
 class DashboardController extends Controller
 {
    public function stocks(Request $request) {
-       $index = $request->index ?? 0;
-       $page = $request->page ?? 1;
-       $numElements = config('app.elements_per_page');
-       $start = ($index * $numElements) + $page;
+       $index = $request->index ?? 1;
+       
+       if(!$request->page) {
+           $page = 1;
+       }
+       else if ((int)$request->page > 16) {
+           $page = 1;
+       }
+       else {
+           $page = (int)$request->page;
+       }
 
-       $fileHandler = fopen('data/stocks.json', 'r') or die('unable to open stocks.json');
-       $string = fread($fileHandler, fileSize('data/stocks.json'));
+       $numElements = config('app.elements_per_page');
+       $start = (225 * ($index - 1)) + ($numElements * ($page - 1));
+
+       $fileName = 'data/stocks.json';
+       $fileHandler = fopen($fileName, 'r') or die($fileName . ' could not be opened');
+       $string = fread($fileHandler, fileSize($fileName));
        fclose($fileHandler);
 
        $stocks = json_decode($string)->stocks;
@@ -23,11 +34,37 @@ class DashboardController extends Controller
        ->with('title', 'Stocks')
        ->with('stocks', $stocks)
        ->with('index', $index)
-       ->with('paginate_start', ($index * $numElements))
-       ->with('paginate_current', ($page - 1));
+       ->with('paginate_start', ((($index  - 1) * $numElements) + 1))
+       ->with('paginate_current', (($index - 1) * $numElements) + $page);
    }
 
-   public function crypto() {
-       return view('crypto')->with('title', 'Crypto');
+   public function crypto(Request $request) {
+        $index = $request->index ?? 1;
+        
+        if(!$request->page) {
+            $page = 1;
+        }
+        else if ((int)$request->page > 16) {
+            $page = 1;
+        }
+        else {
+            $page = (int)$request->page;
+        }
+
+        $numElements = config('app.elements_per_page');
+        $start = (225 * ($index - 1)) + ($numElements * ($page - 1))  ;
+
+        $fileName = 'data/crypto.json';
+        $fileHandler= fopen($fileName, 'r') or die($fileName . ' cannot be opened');
+        $string = fread($fileHandler, filesize($fileName));
+        $crypto = json_decode($string, true)['crypto'];
+        $crypto = array_slice($crypto, $start, $numElements);
+
+        return view('crypto')
+        ->with('title', 'Crypto')
+        ->with('crypto', $crypto)
+        ->with('index', $index)
+        ->with('paginate_start', ((($index  - 1) * $numElements) + 1))
+        ->with('paginate_current', (($index - 1) * $numElements) + $page);
    }
 }
