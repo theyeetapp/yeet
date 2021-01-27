@@ -11,3 +11,13 @@
     margin-left:16.67vw;
     width:83.33vw;
 }
+
+.update-subscriptions 
+{
+    bottom:-96px;
+}
+
+.update-subscriptions.active
+{
+    bottom:0;
+}

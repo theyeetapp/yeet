@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubscriptionsController;
+use App\Http\Controllers\StocksController;
+use App\Http\Controllers\CryptoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::middleware('guest')->group(function() {
 
 Route::middleware('auth')->group(function() {
     Route::get('/subscriptions', [SubscriptionsController::class, 'show'])->name('subscriptions');
-    Route::get('/stocks', [DashboardController::class, 'stocks'])->name('stocks');
-    Route::get('/crypto', [DashboardController::class, 'crypto'])->name('crypto');
+    Route::get('/stocks', StocksController::class)->name('stocks');
+    Route::get('/crypto', CryptoController::class)->name('crypto');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
