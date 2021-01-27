@@ -1,7 +1,7 @@
 
 @extends('layouts/auth_app')
 
-@section('content')
+@section('content') 
 
     <div class='grid grid-cols-12 col-gap-5 mb-5'>
         @foreach($stocks as $stock)
@@ -39,10 +39,11 @@
     </div>
 
     <div class='update-subscriptions transition-all duration-300 ease-in fixed left-0 w-screen py-6 px-12 shadow-md bg-white flex flex-row justify-end'>
-        <form action='' method='POST'>
+        <form action='{{ route("subscriptions.update") }}' method='POST'>
             @CSRF
-            <input type='hidden' name='subscriptions' class='subscriptions-input' value="{{ $subscriptionString }}">
-            <input type='hidden' name='unsubscriptions' class='unsubscriptions-input' value="">
+            <input type='hidden' name='subscriptions' class='subscription-symbols' value="">
+            <input type='hidden' name='unsubscriptions' class='unsubscription-symbols' value="">
+            <input type='hidden' name='names' class='names' value="">
             <button type='submit' class='focus:outline-none bg-yeet-blue p-3 text-white'>Update</button>
         </form>
     </div>
@@ -53,7 +54,8 @@
         const initialSubscriptions = @json($subscriptions);
         const subscriptions = @json($subscriptions);
         const unsubscriptions = [];
-        const updateSubscriptions = $('.update-subscriptions')
+        const updateSubscriptions = $('.update-subscriptions');
+        const names = {};
         const actions = $('.action');
 
         actions.click(function() {
@@ -64,9 +66,11 @@
 
             const check = action.next();
             const symbol = action.parent().parent().find('.symbol').text();
+            const name = action.parent().parent().find('.name').text();
 
             if(action.hasClass('action-subscribe')) {
                 subscriptions.push(symbol);
+                names[symbol] = name;
                 const index = unsubscriptions.findIndex(unsubscription => unsubscription === symbol);
                 if(index !== -1) {
                     unsubscriptions.splice(index, 1);
@@ -78,6 +82,7 @@
             else {
                 const index = subscriptions.findIndex(subscription => subscription === symbol);
                 subscriptions.splice(index, 1);
+                delete names[symbol];
                 if(initialSubscriptions.includes(symbol)) {
                     if(!unsubscriptions.includes(symbol)) {
                         unsubscriptions.push(symbol);
@@ -111,12 +116,12 @@
         }
 
         const updateInputs = () => {
-            const subscriptionsInput = $('.subscriptions-input');
-            const unsubscriptionsInput = $('.unsubscriptions-input');
+            const subscriptionsInput = $('.subscription-symbols');
+            const unsubscriptionsInput = $('.unsubscription-symbols');
+            const namesInput = $('.names');
             let subscriptionsText = '';
             let unsubscriptionsText = '';
             const subscriptions_ = subscriptions.filter(subscription => !initialSubscriptions.includes(subscription));
-            // const unsubscriptions_ = unsubscriptions.filter(unsubscription => !initialSubscriptions.includes(unsubcription));
 
             subscriptions_.forEach(subscription => {
                 subscriptionsText += subscription + '|';
@@ -126,8 +131,9 @@
                 unsubscriptionsText += unsubscription + '|';
             })
 
-            alert(subscriptionsText);
-            alert(unsubscriptionsText);
+            subscriptionsInput.val(subscriptionsText);
+            unsubscriptionsInput.val(unsubscriptionsText);
+            namesInput.val(JSON.stringify(names));
         }
     </script>
 @endsection

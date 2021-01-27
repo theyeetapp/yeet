@@ -40,13 +40,11 @@ class StocksController extends Controller
        $stocks = array_slice($stocks, $start, $numElements);
        
        $subscribedStockIds = Subscription::select('market_id')->where('user_id', $request->user()->id)->where('market_type', 'stock')->get();        
-       $subscribedStockSymbols = Stock::select('symbol')->whereIn('id', $subscribedStockIds)->get();
-       $subscribedStockSymbols = json_decode($subscribedStockSymbols[0], true);
-       $subscribedStockSymbols = array_values($subscribedStockSymbols);
-       $subscriptionString = '';
+       $subscribedStockSymbols = Stock::select('symbol')->whereIn('id', $subscribedStockIds)->get()->toArray();
+       $symbols = [];
 
-       foreach($subscribedStockSymbols as $symbol) {
-           $subscriptionString .= $symbol . '|';
+       forEach($subscribedStockSymbols as $symbol) {
+           array_push($symbols, $symbol['symbol']);
        }
 
        return view('stocks')
@@ -55,7 +53,6 @@ class StocksController extends Controller
        ->with('index', $index)
        ->with('paginate_start', ((($index  - 1) * $numElements) + 1))
        ->with('paginate_current', (($index - 1) * $numElements) + $page)
-       ->with('subscriptions', $subscribedStockSymbols)
-       ->with('subscriptionString', $subscriptionString);
+       ->with('subscriptions', $symbols);
     }
 }
