@@ -68,4 +68,107 @@
             </div>
         </div>
     </div>
+
+    <div class='update-subscriptions work-sans transition-all duration-300 ease-in fixed left-0 w-screen py-5 px-12 shadow-md bg-white flex flex-row justify-end'>
+        <form action='{{ route("subscriptions.update", ["type" => $type]) }}' method='POST'>
+            @CSRF
+            <input type='hidden' name='subscriptions' class='subscription-symbols' value="">
+            <input type='hidden' name='unsubscriptions' class='unsubscription-symbols' value="">
+            <input type='hidden' name='names' class='names' value="">
+            <button type='submit' class='focus:outline-none bg-yeet-blue p-3 text-white'>Update</button>
+        </form>
+    </div>
+@endsection
+
+
+@section('js')
+    <script>
+        const initialSubscriptions = @json($subscriptions);
+        const subscriptions = @json($subscriptions);
+        const unsubscriptions = [];
+        const updateSubscriptions = $('.update-subscriptions');
+        const names = {};
+        const actions = $('.action');
+
+        actions.click(function() {
+            actionClick($(this));
+        })
+
+        const actionClick = action => {
+
+            const check = action.next();
+            const symbol = action.parent().parent().find('.symbol').text();
+            const name = action.parent().parent().find('.name').text();
+
+            if(action.hasClass('action-subscribe')) {
+                subscriptions.push(symbol);
+                names[symbol] = name;
+                const index = unsubscriptions.findIndex(unsubscription => unsubscription === symbol);
+                if(index !== -1) {
+                    unsubscriptions.splice(index, 1);
+                }
+                action.removeClass('action-subscribe').addClass('action-unsubscribe');
+                action.text('unsubscribe');
+                check.addClass('fa-check-circle');
+            }
+            else {
+                const index = subscriptions.findIndex(subscription => subscription === symbol);
+                subscriptions.splice(index, 1);
+                delete names[symbol];
+                if(initialSubscriptions.includes(symbol)) {
+                    if(!unsubscriptions.includes(symbol)) {
+                        unsubscriptions.push(symbol);
+                    }
+                }
+                action.removeClass('action-unsubscribe').addClass('action-subscribe');
+                action.text('subscribe');
+                check.removeClass('fa-check-circle');
+            }
+
+            toggleUpdate();
+            updateInputs();
+        }
+
+        const toggleUpdate = () => {
+
+            let active = false;
+
+            if(initialSubscriptions.length > 0 && subscriptions.length === 0) {
+                active = true;
+            }
+            if(unsubscriptions.length > 0) {
+                active = true;
+            }
+            else {
+                subscriptions.forEach(subscription => {
+                    if(!initialSubscriptions.includes(subscription)) {
+                        active = true;
+                    }
+                })
+            }
+
+            const set = !active ? updateSubscriptions.removeClass('active') : updateSubscriptions.addClass('active');
+        }
+
+        const updateInputs = () => {
+            const subscriptionsInput = $('.subscription-symbols');
+            const unsubscriptionsInput = $('.unsubscription-symbols');
+            const namesInput = $('.names');
+            let subscriptionsText = '';
+            let unsubscriptionsText = '';
+            const subscriptions_ = subscriptions.filter(subscription => !initialSubscriptions.includes(subscription));
+
+            subscriptions_.forEach(subscription => {
+                subscriptionsText += subscription + '|';
+            })
+            
+            unsubscriptions.forEach(unsubscription => {
+                unsubscriptionsText += unsubscription + '|';
+            })
+
+            subscriptionsInput.val(subscriptionsText);
+            unsubscriptionsInput.val(unsubscriptionsText);
+            namesInput.val(JSON.stringify(names));
+        }
+    </script>
 @endsection

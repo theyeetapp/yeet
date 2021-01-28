@@ -32,7 +32,7 @@ Route::middleware('guest')->group(function() {
 
 Route::middleware('auth')->group(function() {
     Route::get('/subscriptions', [SubscriptionsController::class, 'show'])->name('subscriptions');
-    Route::post('/subscriptions/update', [SubscriptionsController::class, 'update'])->name('subscriptions.update');
+    Route::post('/subscriptions/{type}/update', [SubscriptionsController::class, 'update'])->name('subscriptions.update');
     Route::get('/stocks', StocksController::class)->name('stocks');
     Route::get('/crypto', CryptoController::class)->name('crypto');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

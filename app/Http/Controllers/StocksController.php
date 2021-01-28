@@ -21,7 +21,7 @@ class StocksController extends Controller
        if(!$request->page) {
            $page = 1;
        }
-       else if ((int)$request->page > 16) {
+       else if((int)$request->page > 16) {
            $page = 1;
        }
        else {
@@ -39,13 +39,18 @@ class StocksController extends Controller
        $stocks = json_decode($string)->stocks;
        $stocks = array_slice($stocks, $start, $numElements);
        
-       $subscribedStockIds = Subscription::select('market_id')->where('user_id', $request->user()->id)->where('market_type', 'stock')->get();        
-       $subscribedStockSymbols = Stock::select('symbol')->whereIn('id', $subscribedStockIds)->get()->toArray();
-       $symbols = [];
+       $subscribedStockIds = Subscription::select('market_id')
+       ->where('user_id', $request->user()->id)
+       ->where('market_type', 'stock')
+       ->get();        
+       $subscribedStocks = Stock::select('symbol')
+       ->whereIn('id', $subscribedStockIds)
+       ->get()
+       ->toArray();
 
-       forEach($subscribedStockSymbols as $symbol) {
-           array_push($symbols, $symbol['symbol']);
-       }
+       $symbols = array_map(function($stock) {
+            return $stock['symbol'];
+       }, $subscribedStocks);
 
        return view('stocks')
        ->with('title', 'Stocks')
@@ -53,6 +58,7 @@ class StocksController extends Controller
        ->with('index', $index)
        ->with('paginate_start', ((($index  - 1) * $numElements) + 1))
        ->with('paginate_current', (($index - 1) * $numElements) + $page)
-       ->with('subscriptions', $symbols);
+       ->with('subscriptions', $symbols)
+       ->with('type', 'stocks');
     }
 }
