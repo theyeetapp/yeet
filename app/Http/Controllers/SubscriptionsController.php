@@ -18,7 +18,12 @@ class SubscriptionsController extends Controller
     }
 
     public function show() {
-        return view('subscriptions')->with('title', 'Subscriptions');
+        $user = Auth::user();
+        $subscriptions = $user->subscriptions;
+        return view('subscriptions')
+        ->with('title', 'Subscriptions')
+        ->with('subscriptions', $subscriptions)
+        ->with('type', 'all');
     }
 
     public function update($type) {
@@ -65,7 +70,10 @@ class SubscriptionsController extends Controller
 
     public function unsubscribe($unsubscriptions, $type) {
 
-        if($type === 'stocks') {
+        if(type === 'all') {
+            // $stock = Stock::
+        }
+        else if($type === 'stocks') {
             $stockIds = Stock::select('id')->whereIn('symbol', $unsubscriptions)->get();
             Subscription::where('user_id', Auth::user()->id)
             ->where('market_type', 'stock')
@@ -75,7 +83,7 @@ class SubscriptionsController extends Controller
         else if($type === 'crypto') {
             $cryptoIds = Crypto::select('id')->whereIn('symbol', $unsubscriptions)->get();
             Subscription::where('user_id', Auth::user()->id)
-            ->where('market_type', 'stock')
+            ->where('market_type', 'crypto')
             ->whereIn('market_id', $cryptoIds)
             ->delete();
         }

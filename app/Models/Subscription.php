@@ -10,4 +10,8 @@ class Subscription extends Model
     use HasFactory;
     
     protected $fillable = ['user_id', 'market_id', 'market_type'];
+
+    public function market() {
+        return $this->morphTo();
+    }
 }

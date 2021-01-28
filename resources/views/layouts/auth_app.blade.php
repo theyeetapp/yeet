@@ -52,10 +52,10 @@
         </div>
 
         <div class='main flex flex-col px-16'>
-            <div class='py-8 flex flex-row justify-between'>
+            <div class='py-8 flex flex-row justify-between items-center'>
                 <div class='flex flex-col'>
-                    <p class='m-0 mb-2 text-2xl'>Hello {{ explode(' ', Auth::user()->name)[1] }}!</p>
-                    <p class='m-0 text-gray-700 text-sm'>October 26</p>
+                    <!-- <p class='m-0 mb-2 text-2xl'>Hello {{ explode(' ', Auth::user()->name)[1] }}!</p> -->
+                    <!-- <p class='m-0 text-gray-700 text-sm'>October 26</p> -->
                 </div>
                 <form class='relative'>
                     @CSRF
