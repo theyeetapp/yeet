@@ -74,7 +74,7 @@
             @CSRF
             <input type='hidden' name='subscriptions' class='subscription-symbols' value="">
             <input type='hidden' name='unsubscriptions' class='unsubscription-symbols' value="">
-            <input type='hidden' name='names' class='names' value="">
+            <input type='hidden' name='companies' class='companies' value="">
             <button type='submit' class='focus:outline-none bg-yeet-blue p-3 text-white'>Update</button>
         </form>
     </div>
@@ -87,7 +87,7 @@
         const subscriptions = @json($subscriptions);
         const unsubscriptions = [];
         const updateSubscriptions = $('.update-subscriptions');
-        const names = {};
+        const companies = {};
         const actions = $('.action');
 
         actions.click(function() {
@@ -102,7 +102,7 @@
 
             if(action.hasClass('action-subscribe')) {
                 subscriptions.push(symbol);
-                names[symbol] = name;
+                companies[symbol] = name;
                 const index = unsubscriptions.findIndex(unsubscription => unsubscription === symbol);
                 if(index !== -1) {
                     unsubscriptions.splice(index, 1);
@@ -114,7 +114,7 @@
             else {
                 const index = subscriptions.findIndex(subscription => subscription === symbol);
                 subscriptions.splice(index, 1);
-                delete names[symbol];
+                delete companies[symbol];
                 if(initialSubscriptions.includes(symbol)) {
                     if(!unsubscriptions.includes(symbol)) {
                         unsubscriptions.push(symbol);
@@ -153,7 +153,7 @@
         const updateInputs = () => {
             const subscriptionsInput = $('.subscription-symbols');
             const unsubscriptionsInput = $('.unsubscription-symbols');
-            const namesInput = $('.names');
+            const companiesInput = $('.companies');
             let subscriptionsText = '';
             let unsubscriptionsText = '';
             const subscriptions_ = subscriptions.filter(subscription => !initialSubscriptions.includes(subscription));
@@ -168,7 +168,7 @@
 
             subscriptionsInput.val(subscriptionsText);
             unsubscriptionsInput.val(unsubscriptionsText);
-            namesInput.val(JSON.stringify(names));
+            companiesInput.val(JSON.stringify(companies));
         }
     </script>
 @endsection

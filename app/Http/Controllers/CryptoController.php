@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Crypto;
+use App\Models\Symbol;
 use App\Models\Subscription;
 
 class CryptoController extends Controller
@@ -38,18 +38,11 @@ class CryptoController extends Controller
         $crypto = json_decode($string, true)['crypto'];
         $crypto = array_slice($crypto, $start, $numElements);
 
-        $subscribedCryptoIds = Subscription::select('market_id')
-        ->where('user_id', Auth::user()->id)
-        ->where('market_type', 'crypto')
-        ->get();
-        $subscribedCrypto = Crypto::select('symbol')
-        ->whereIn('id', $subscribedCryptoIds)
-        ->get()
-        ->toArray();
+        $cryptoSymbols = Auth::user()->symbols('crypto');
 
         $symbols = array_map(function($crypto) {
-            return $crypto['symbol'];
-        }, $subscribedCrypto);
+            return $crypto['name'];
+        }, $cryptoSymbols);
 
         return view('crypto')
         ->with('title', 'Crypto')

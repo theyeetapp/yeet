@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Stock;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Symbol;
 use App\Models\Subscription;
 
 class StocksController extends Controller
@@ -38,19 +39,12 @@ class StocksController extends Controller
 
        $stocks = json_decode($string)->stocks;
        $stocks = array_slice($stocks, $start, $numElements);
-       
-       $subscribedStockIds = Subscription::select('market_id')
-       ->where('user_id', $request->user()->id)
-       ->where('market_type', 'stock')
-       ->get();        
-       $subscribedStocks = Stock::select('symbol')
-       ->whereIn('id', $subscribedStockIds)
-       ->get()
-       ->toArray();
+
+       $stockSymbols = Auth::user()->symbols('stock');
 
        $symbols = array_map(function($stock) {
-            return $stock['symbol'];
-       }, $subscribedStocks);
+        return $stock['name'];
+       }, $stockSymbols);
 
        return view('stocks')
        ->with('title', 'Stocks')
@@ -59,6 +53,6 @@ class StocksController extends Controller
        ->with('paginate_start', ((($index  - 1) * $numElements) + 1))
        ->with('paginate_current', (($index - 1) * $numElements) + $page)
        ->with('subscriptions', $symbols)
-       ->with('type', 'stocks');
+       ->with('type', 'stock');
     }
 }
