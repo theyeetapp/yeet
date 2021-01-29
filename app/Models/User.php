@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\Symbol;
 use App\Models\Subscription;
 
 class User extends Authenticatable
@@ -47,6 +48,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function symbols($type) {
+        return $this->hasManyThrough(Symbol::class, Subscription::class, 'user_id', 'id')
+        ->select('symbols.name')
+        ->where('symbols.type', $type)
+        ->get()
+        ->toArray();
+    }
 
     public function subscriptions() {
         return $this->hasMany(Subscription::class);
