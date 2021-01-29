@@ -32,9 +32,9 @@ class EditStocksTableSymbolToString extends Migration
             Type::addType('char', StringType::class);
         }
 
-        Schema::table('stocks', function (Blueprint $table) {
-            $table->char('symbol', 20)->change();
-            $table->dropColumn(['name']);
-        });
+        // Schema::table('stocks', function (Blueprint $table) {
+        //     // $table->char('symbol', 20)->change();
+        //     $table->dropColumn(['name']);
+        // });
     }
 }
