@@ -49,15 +49,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function symbols($type) {
-        return $this->hasManyThrough(Symbol::class, Subscription::class, 'user_id', 'id')
-        ->select('symbols.name')
-        ->where('symbols.type', $type)
-        ->get()
-        ->toArray();
+    public function symbols($type = null) {
+
+        if($type) {
+            return $this->hasManyThrough(Symbol::class, Subscription::class, 'user_id', 'id')
+            ->select('symbols.name')
+            ->where('symbols.type', $type)
+            ->get()
+            ->toArray();
+        }
+        else {
+            return $this->hasManyThrough(Symbol::class, Subscription::class, 'user_id', 'id')
+            ->select('symbols.name')
+            ->get()
+            ->toArray();
+        }
+        
     }
 
     public function subscriptions() {
-        return $this->hasMany(Subscription::class);
+        return $this->hasMany(Subscription::class)->orderBy('created_at', 'desc')->get();
     }
 }

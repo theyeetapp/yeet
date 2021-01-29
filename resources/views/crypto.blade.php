@@ -32,7 +32,7 @@
 
         @for($i = $paginate_start; $i <= ($paginate_start + config('app.elements_per_page')); $i++)
             <div class='col-span-1 flex flex-row justify-center p-3 mb-5 {{ $i === $paginate_current ? "bg-yeet-blue text-white" : "" }}'>
-                <a href='{{ route("stocks", ["index" => $index, "page" => ($i - $paginate_start) + 1]) }}'>{{ $i }}</a>
+                <a href='{{ route("crypto", ["index" => $index, "page" => ($i - $paginate_start) + 1]) }}'>{{ $i }}</a>
             </div>
         @endfor
         <div class='col-span-1 p-3'>

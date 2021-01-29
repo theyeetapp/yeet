@@ -59,8 +59,8 @@
                 </div>
                 <form class='relative'>
                     @CSRF
-                    <i class='absolute top-0 left-0 ml-3 mt-4 fa fa-search' style='left:2px'></i>
-                    <input type='text' class='focus:outline-none pl-10 w-48 py-3 rounded-md' placeholder='Search' />
+                    <i class='absolute top-0 left-0 ml-4 mt-4 fa fa-search' style='left:2px'></i>
+                    <input type='text' class='transition-all duration-300 ease-out focus:outline-none w-48 py-3 rounded-md input-search' placeholder='Find symbols' />
                 </form>
             </div>
             <div class='pt-2'>
@@ -83,8 +83,8 @@
 
 @section('js')
     <script>
-        const initialSubscriptions = @json($subscriptions);
-        const subscriptions = @json($subscriptions);
+        const initialSubscriptions = @json($type === "all" ? $symbols : $subscriptions);
+        const subscriptions = @json($type === "all" ? $symbols : $subscriptions);
         const unsubscriptions = [];
         const updateSubscriptions = $('.update-subscriptions');
         const companies = {};

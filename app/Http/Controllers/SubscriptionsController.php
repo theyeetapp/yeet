@@ -18,11 +18,18 @@ class SubscriptionsController extends Controller
 
     public function show() {
         $user = Auth::user();
-        $subscriptions = $user->subscriptions;
+        $subscriptions = $user->subscriptions();
+
+        $subscribedSymbols = $user->symbols();
+        $symbols = array_map(function($stock) {
+        return $stock['name'];
+        }, $subscribedSymbols);
+
         return view('subscriptions')
         ->with('title', 'Subscriptions')
         ->with('subscriptions', $subscriptions)
-        ->with('type', 'all');
+        ->with('type', 'all')
+        ->with('symbols', $symbols);
     }
 
     public function update($type) {

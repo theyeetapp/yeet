@@ -12,6 +12,17 @@
     width:83.33vw;
 }
 
+.input-search
+{
+    padding-left:45px;
+    width:200px;
+}
+
+.input-search:focus
+{
+    width:240px;
+}
+
 .update-subscriptions 
 {
     bottom:-96px;
