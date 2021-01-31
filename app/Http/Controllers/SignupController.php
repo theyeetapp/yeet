@@ -34,7 +34,8 @@ class SignupController extends Controller
         User::create([
             'name' => $name,
             'email' => $email,
-            'password' => Hash::make($password)
+            'password' => Hash::make($password),
+            'avatar' => NULL
         ]);
 
         $request->session()->flash('message', 'continue at your email');

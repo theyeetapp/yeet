@@ -46,7 +46,7 @@
                 </li>
             </ul>
             <div class='pt-4 px-2 flex flex-row justify-center items-center'>
-                <img src='/images/home/user.jpg' class='w-10 h-10 mr-3 rounded-full' />
+                <img src='{{Auth::user()->avatar ?? "/images/home/user.jpg"}}' class='w-10 h-10 mr-3 rounded-full' />
                 <p class='m-0 text-sm'>{{ Auth::user()->name }}</p>
             </div>      
         </div>
@@ -60,7 +60,7 @@
                 <form class='relative'>
                     @CSRF
                     <i class='absolute top-0 left-0 ml-4 mt-4 fa fa-search' style='left:2px'></i>
-                    <input type='text' class='transition-all duration-300 ease-out focus:outline-none w-48 py-3 rounded-md input-search' placeholder='Find symbols' />
+                    <input type='text' class='transition-all duration-300 ease-out shadow focus:outline-none w-48 py-3 input-search' placeholder='Find symbols' />
                 </form>
             </div>
             <div class='pt-2'>

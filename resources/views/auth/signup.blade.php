@@ -34,7 +34,7 @@
                     <button type='submit' class='focus:outline-none hover:bg-yeet-blue transition-colors duration-500 ease-in py-4 text-white bg-yeet-light-blue w-full'>Signup to Yeet</button>
                 </div>
                 <div class='mb-10'>
-                    <p class='m-0 text-sm text-gray-700 text-center'>signup with <a href='' class='text-blue-700'>Google</a> instead</p>
+                    <p class='m-0 text-sm text-gray-700 text-center'>signup with <a href='{{ route("auth.google") }}' class='text-blue-700'>Google</a> instead</p>
                 </div>
                 <div class='absolute bottom-0 left-0 w-full p-5 rounded' style='background:#F2F2F2'>
                     <p class='m-0 text-sm text-gray-700 text-center'>already have an account? <a href='/login' class='text-blue-700'>login</a></p>

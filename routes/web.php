@@ -28,6 +28,9 @@ Route::middleware('guest')->group(function() {
 
     Route::get('/login', [AuthController::class, 'show'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+
+    Route::get('/authenticate/google', [AuthController::class, 'authGoogle'])->name('auth.google');
+    Route::get('/google/login', [AuthController::class, 'googleLogin'])->name('google.login');
 }); 
 
 Route::middleware('auth')->group(function() {
