@@ -10,7 +10,7 @@
 @endsection
 
 @section('body')
-    <div class='w-screen h-screen flex flex-row justify-center items-center work-sans bg-yeet-blue'>
+    <div class='w-screen h-screen flex flex-row justify-center items-center quicksand bg-yeet-blue'>
         <div class='absolute top-0 left-0 w-screen flex text-white pt-12 px-6 bsm:px-10'>
             <p class='m-0 text-lg mr-auto'><a href='{{ route("index") }}'>Yeet</a></p>
             <p class='m-0 text-lg'><a href='{{ route("login") }}'>Login</a></p>

@@ -10,7 +10,7 @@
 @endsection
 
 @section('body')
-    <div class='w-screen min-h-screen bg-light-gray work-sans'>
+    <div class='w-screen min-h-screen bg-light-gray quicksand'>
         <div class='sidebar h-full bg-yeet-blue flex flex-col py-8 px-5 text-white'>
             <div class='py-5 w-full flex flex-row items-center px-4 mb-12'>
                 <i class='relative fa fa-home text-sm mr-5' style='bottom:1px'></i>
