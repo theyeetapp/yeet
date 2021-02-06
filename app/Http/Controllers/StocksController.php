@@ -35,6 +35,7 @@ class StocksController extends Controller
        fclose($fileHandler);
 
        $stocks = json_decode($string)->stocks;
+       $total = count($stocks);
        $maxIndex = ceil($total / 225);
        $numElements = config('app.elements_per_page');
        $start = (225 * ($index - 1)) + ($numElements * ($page - 1));

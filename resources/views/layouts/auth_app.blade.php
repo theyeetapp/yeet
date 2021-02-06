@@ -46,7 +46,7 @@
                 </li>
             </ul>
             <div class='pt-4 px-2 flex flex-row justify-center items-center'>
-                <img src='{{Auth::user()->avatar ?? "/images/home/user.jpg"}}' class='w-10 h-10 mr-3 rounded-full' />
+                <img src='{{Auth::user()->avatar ?? "/images/general/user.jpg"}}' class='w-10 h-10 mr-3 rounded-full' />
                 <p class='m-0 text-sm'>{{ Auth::user()->name }}</p>
             </div>      
         </div>
@@ -54,16 +54,14 @@
         <div class='main flex flex-col px-16'>
             <div class='py-8 flex flex-row justify-between items-center'>
                 <div class='flex flex-col'>
-                    <!-- <p class='m-0 mb-2 text-2xl'>Hello {{ explode(' ', Auth::user()->name)[1] }}!</p> -->
-                    <!-- <p class='m-0 text-gray-700 text-sm'>October 26</p> -->
                 </div>
                 <form class='relative'>
                     @CSRF
-                    <i class='absolute top-0 left-0 ml-4 mt-4 fa fa-search' style='left:2px'></i>
-                    <input type='text' class='transition-all duration-300 ease-out shadow focus:outline-none w-48 py-3 input-search' placeholder='Find symbols' />
+                    <img src='/images/general/search.png' class='absolute top-0 left-0 w-5 h-5 ml-3 mt-3 fa fa-search' style='top:2px; left:2px' />
+                    <input type='text' class='transition-all duration-300 ease-out shadow focus:outline-none w-48 py-3 input-search' />
                 </form>
             </div>
-            <div class='pt-2'>
+            <div class='pt-2 pb-5'>
                 @yield('content')
             </div>
         </div>

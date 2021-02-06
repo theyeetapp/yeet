@@ -23,6 +23,26 @@
     width:240px;
 }
 
+.input-search::-webkit-input-placeholder
+{ 
+    color: #333;
+}
+
+.input-search::-moz-placeholder 
+{ 
+    color: #333;
+}
+
+.input-search:-ms-input-placeholder
+{ 
+    color: #333;
+}
+
+.input-search:-moz-placeholder 
+{ 
+    color: #333;
+}
+
 .update-subscriptions 
 {
     bottom:-96px;

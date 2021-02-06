@@ -40,13 +40,13 @@
     <div class='quicksand'>
         <div class='hero grid grid-cols-12'>
             <div class='col-span-12 lg:col-span-5 h-full flex flex-col justify-center text-white px-8 sm:px-12 bsm:px-20 bg-yeet-blue'>
-                <p class='m-0 mb-3 text-xl'>Yeet</p>
-                <div class='text-lg pr-10 mb-4'>
+                <p class='m-0 mb-3 text-xl'>yeet</p>
+                <div class='text-md pr-10 mb-4'>
                     financial market monitoring made simple. <p class='m-0 hidden sm:inline'>easily keep track of your stock and crypto-currency portfolios</p>
                 </div>
                 <div class='flex'>
-                    <a href='{{ route("signup") }}' class='py-5 px-8 text-white shadow-md mr-4' style='width:fit-content'>Signup</a>
-                    <a href='{{ route("login") }}' class='py-5 px-8 text-white shadow-md' style='width:fit-content'>Login</a>
+                    <a href='{{ route("signup") }}' class='py-4 px-6 text-white text-md shadow-md mr-4' style='width:fit-content'>signup</a>
+                    <a href='{{ route("login") }}' class='py-4 px-6 text-white text-md shadow-md' style='width:fit-content'>login</a>
                 </div>
             </div>
             <div class='hidden lg:block col-span-7 relative'>
@@ -55,8 +55,8 @@
         </div>
         <div class='sm:py-24 px-6 sm:px-16 md:px-24 lg:px-64'>
             <div class='flex flex-col-reverse bmd:grid bmd:grid-cols-12 col-gap-5 px-5 sm:px-10 py-16 bmd:p-16 bg-white sm:shadow-md'>
-                <div class='w-full bmd:col-span-6 flex flex-col justify-center bmd:pr-5'>
-                    <p class='m-0 mb-4 bmd:mb-5 text-xl text-center bmd:text-left font-semibold'>What is Yeet and what can it do for you</p>
+                <div class='w-full bmd:col-span-6 flex flex-col justify-center lowercase bmd:pr-5'>
+                    <p class='m-0 mb-4 bmd:mb-5 text-lg text-center bmd:text-left font-semibold'>What is Yeet and what can it do for you</p>
                     <p class='m-0 text-md leading-7 text-justify'>Yeet is the ultimate tracking tool for your favorite stocks and crypto.
                     Always be aware of the current state of your investment or stocks portfolio.
                     With Yeet, there is simply no need to be checking out stocks or cryptocurrencies you are invested in every day. Instead,
