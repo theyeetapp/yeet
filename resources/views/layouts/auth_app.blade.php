@@ -80,7 +80,6 @@
     </div>
 @endsection
 
-
 @section('js')
     <script>
         const initialSubscriptions = @json($type === "all" ? $symbols : $subscriptions);

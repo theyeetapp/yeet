@@ -29,13 +29,14 @@ class CryptoController extends Controller
             $page = (int)$request->page;
         }
 
-        $numElements = config('app.elements_per_page');
-        $start = (225 * ($index - 1)) + ($numElements * ($page - 1))  ;
-
         $fileName = 'data/crypto.json';
         $fileHandler= fopen($fileName, 'r') or die($fileName . ' cannot be opened');
         $string = fread($fileHandler, filesize($fileName));
         $crypto = json_decode($string, true)['crypto'];
+        $total = count($crypto);
+        $maxIndex = ceil($total / 225);
+        $numElements = config('app.elements_per_page');
+        $start = (225 * ($index - 1)) + ($numElements * ($page - 1))  ;
         $crypto = array_slice($crypto, $start, $numElements);
 
         $cryptoSymbols = Auth::user()->symbols('crypto');
@@ -47,9 +48,15 @@ class CryptoController extends Controller
         return view('crypto')
         ->with('title', 'Crypto')
         ->with('crypto', $crypto)
+        ->with('numElements', $numElements)
         ->with('index', $index)
         ->with('paginate_start', ((($index  - 1) * $numElements) + 1))
         ->with('paginate_current', (($index - 1) * $numElements) + $page)
+        ->with('maxIndex', $maxIndex)
+        ->with('paginateStart', ((($index  - 1) * $numElements) + 1))
+        ->with('paginateCurrent', (($index - 1) * $numElements) + $page)
+        ->with('paginateMax', ceil($total / $numElements))
+        ->with('total', $total)
         ->with('subscriptions', $symbols)
         ->with('type', 'crypto');
     }

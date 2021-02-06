@@ -29,18 +29,19 @@ class StocksController extends Controller
            $page = (int)$request->page;
        }
 
-       $numElements = config('app.elements_per_page');
-       $start = (225 * ($index - 1)) + ($numElements * ($page - 1));
-
        $fileName = 'data/stocks.json';
        $fileHandler = fopen($fileName, 'r') or die($fileName . ' could not be opened');
        $string = fread($fileHandler, fileSize($fileName));
        fclose($fileHandler);
 
        $stocks = json_decode($string)->stocks;
+       $total = count($stocks);
+       $maxIndex = ceil($total / 225);
+       $numElements = config('app.elements_per_page');
+       $start = (225 * ($index - 1)) + ($numElements * ($page - 1));
        $stocks = array_slice($stocks, $start, $numElements);
 
-       $stockSymbols = Auth::user()->symbols('stock');
+       $stockSymbols = Auth::user()->symbols('stock'); 
 
        $symbols = array_map(function($stock) {
         return $stock['name'];
@@ -49,9 +50,13 @@ class StocksController extends Controller
        return view('stocks')
        ->with('title', 'Stocks')
        ->with('stocks', $stocks)
+       ->with('numElements', $numElements)
        ->with('index', $index)
-       ->with('paginate_start', ((($index  - 1) * $numElements) + 1))
-       ->with('paginate_current', (($index - 1) * $numElements) + $page)
+       ->with('maxIndex', $maxIndex)
+       ->with('paginateStart', ((($index  - 1) * $numElements) + 1))
+       ->with('paginateCurrent', (($index - 1) * $numElements) + $page)
+       ->with('paginateMax', ceil($total / $numElements))
+       ->with('total', $total)
        ->with('subscriptions', $symbols)
        ->with('type', 'stock');
     }

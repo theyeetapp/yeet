@@ -31,16 +31,16 @@
                 </div>
                 <div class='flex flex-row items-center mb-6'>
                     <input type='checkbox' name='remember' class='mr-2' />
-                    <p class='relative m-0 text-gray-700 text-sm' style='top:0px; left:1px'>remain logged in</p>
+                    <p class='relative m-0 text-gray-900 text-sm' style='top:0px; left:1px'>remain logged in</p>
                 </div>
                 <div class='mb-4'>
                     <button type='submit' class='focus:outline-none hover:bg-yeet-blue transition-colors duration-500 ease-in py-4 text-white bg-yeet-light-blue w-full'>Login to Yeet</button>
                 </div>
                 <div class='mb-10'>
-                    <p class='m-0 text-sm text-gray-700 text-center'>login with <a href='{{ route("auth.google") }}' class='text-blue-700'>Google</a> instead</p>
+                    <p class='m-0 text-sm text-gray-900 text-center'>login with <a href='{{ route("auth.google") }}' class='text-blue-700'>Google</a> instead</p>
                 </div>
                 <div class='absolute bottom-0 left-0 w-full p-5 rounded' style='background:#F2F2F2'>
-                    <p class='m-0 text-sm text-gray-700 text-center'>don't have an account? <a href='/signup' class='text-blue-700'>signup</a></p>
+                    <p class='m-0 text-sm text-gray-900 text-center'>don't have an account? <a href='/signup' class='text-blue-700'>signup</a></p>
                 </div>
             </form>
         </div>

@@ -51,20 +51,23 @@ class User extends Authenticatable
 
     public function symbols($type = null) {
 
+        $symbolIds = Subscription::select('symbol_id')
+        ->where('user_id', $this->id)
+        ->get()
+        ->toArray();
+
         if($type) {
-            return $this->hasManyThrough(Symbol::class, Subscription::class, 'user_id', 'id')
-            ->select('symbols.name')
-            ->where('symbols.type', $type)
+            return Symbol::select('name')
+            ->where('type', $type)
+            ->whereIn('id', $symbolIds)
             ->get()
             ->toArray();
         }
-        else {
-            return $this->hasManyThrough(Symbol::class, Subscription::class, 'user_id', 'id')
-            ->select('symbols.name')
-            ->get()
-            ->toArray();
-        }
-        
+    
+        return Symbol::select('name')
+        ->whereIn('id', $symbolIds)
+        ->get()
+        ->toArray();
     }
 
     public function subscriptions() {

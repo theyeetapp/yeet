@@ -73,13 +73,12 @@
                 <div class='flex flex-col leading-6 sm:text-md w-full md:w-1/2 mb-6 md:mb-0 md:pr-10'>
                     <div class=''>
                         Yeet is accompanied by a Telegram bot that delivers share prices of your favorite stocks and cryptocurrencies. Built on top
-                        of the Telegram Bot API, Yeetbot delivers price notifications every night at 8:00 PM.
+                        of the Telegram Bot API.
                     </div>
                 </div>
                 <div class='flex flex-col items-center md:items-start w-full md:w-1/2 md:pl-10'>
                     <p class='m-0 leading-6 mb-5'><a href='' class='text-blue-800'>YeetBot</a> is an essential component of the automated tracking services Yeet provides. You must register your
-                        Telegram contact with him to receive price notifications. <br/>
-                        Well then, Follow the steps below to set up and begin using Yeet.
+                        Telegram contact with him to receive price notifications.
                     </p>
                     <!-- <a href='#' class='bg-yeet-blue py-4 px-8 text-white' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i> </a> -->
                 </div>

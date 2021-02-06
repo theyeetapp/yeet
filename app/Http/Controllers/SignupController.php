@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
@@ -31,13 +32,14 @@ class SignupController extends Controller
             return back()->withInput();
         }
 
-        User::create([
+        $user = User::create([
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
             'avatar' => NULL
         ]);
 
+        event(new Registered($user));
         $request->session()->flash('message', 'continue at your email');
         return back();
     }

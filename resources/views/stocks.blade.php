@@ -24,20 +24,25 @@
         @endforeach
     </div>
     <div class='w-full grid grid-cols-12 col-gap-5'>
-        @if($index > 1)
-        <div class='col-span-1 p-3'>
-            <a href='{{ route("stocks", ["index" => $index - 1]) }}'><<<</a>
-        </div>
+        @if($index > 1 && $index <= $maxIndex)
+            <div class='col-span-1 p-3'>
+                <a href='{{ route("stocks", ["index" => $index - 1]) }}'><<<</a>
+            </div>
         @endif
 
-        @for($i = $paginate_start; $i <= ($paginate_start + config('app.elements_per_page')); $i++)
-            <div class='col-span-1 flex flex-row justify-center p-3 mb-5 {{ $i === $paginate_current ? "bg-yeet-blue text-white" : "" }}'>
-                <a href='{{ route("stocks", ["index" => $index, "page" => ($i - $paginate_start) + 1]) }}'>{{ $i }}</a>
-            </div>
+        @for($i = $paginateStart; $i < ($paginateStart + $numElements); $i++)
+            @if($i <= $paginateMax)
+                <div class='col-span-1 flex flex-row justify-center p-3 mb-5 {{ $i === $paginateCurrent ? "bg-yeet-blue text-white" : "" }}'>
+                    <a href='{{ route("stocks", ["index" => $index, "page" => ($i - $paginateStart) + 1]) }}'>{{ $i }}</a>
+                </div>
+            @endif
         @endfor
-        <div class='col-span-1 p-3'>
-            <a href='{{ route("stocks", ["index" => $index + 1]) }}'>>>></a>
-        </div>
+        
+        @if($index < $maxIndex)
+            <div class='col-span-1 p-3'>
+                <a href='{{ route("stocks", ["index" => $index + 1]) }}'>>>></a>
+            </div>
+        @endif
     </div>
 
 @endsection

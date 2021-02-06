@@ -17,13 +17,16 @@ class SubscriptionsController extends Controller
     }
 
     public function show() {
-        $user = Auth::user();
+        $user = Auth::user(); 
         $subscriptions = $user->subscriptions();
 
         $subscribedSymbols = $user->symbols();
         $symbols = array_map(function($stock) {
         return $stock['name'];
         }, $subscribedSymbols);
+
+        // var_dump($symbols);
+        // return;
 
         return view('subscriptions')
         ->with('title', 'Subscriptions')
