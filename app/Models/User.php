@@ -70,7 +70,15 @@ class User extends Authenticatable
         ->toArray();
     }
 
-    public function subscriptions() {
-        return $this->hasMany(Subscription::class)->orderBy('created_at', 'desc')->get();
+    public function subscriptionsCount() {
+        return $this->hasMany(Subscription::class)->count();
+    }
+
+    public function subscriptions($skip, $take) {
+        return $this->hasMany(Subscription::class)
+        ->orderBy('created_at', 'desc')
+        ->skip($skip)
+        ->take($take)
+        ->get();
     }
 }

@@ -17,20 +17,38 @@ class SubscriptionsController extends Controller
     }
 
     public function show() {
+        $index = $this->request->index ?? 1;
+
+        if(!$this->request->page) {
+            $page = 1;
+        }
+        else {
+            $page = $this->request->page;
+        }
+
+        $numElements = config('app.elements_per_page');
+        $total = Auth::user()->subscriptionsCount();
+        $maxIndex = ceil($total / 225);
+        $numElements = config('app.elements_per_page');
+        $start = (225 * ($index - 1)) + ($numElements * ($page - 1));
         $user = Auth::user(); 
-        $subscriptions = $user->subscriptions();
+        $subscriptions = $user->subscriptions($start, $numElements);
 
         $subscribedSymbols = $user->symbols();
         $symbols = array_map(function($stock) {
         return $stock['name'];
         }, $subscribedSymbols);
 
-        // var_dump($symbols);
-        // return;
-
         return view('subscriptions')
         ->with('title', 'Subscriptions')
         ->with('subscriptions', $subscriptions)
+        ->with('numElements', $numElements)
+        ->with('index', $index)
+        ->with('maxIndex', $maxIndex)
+        ->with('paginateStart', ((($index  - 1) * $numElements) + 1))
+        ->with('paginateCurrent', (($index - 1) * $numElements) + $page)
+        ->with('paginateMax', ceil($total / $numElements))
+        ->with('total', $total)
         ->with('type', 'all')
         ->with('symbols', $symbols);
     }
