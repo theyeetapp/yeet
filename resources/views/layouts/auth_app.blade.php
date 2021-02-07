@@ -55,7 +55,7 @@
             <div class='py-8 flex flex-row justify-between items-center'>
                 <div class='flex flex-col'>
                 </div>
-                <form action='{{ route("search") }}' method='POST' class='relative'>
+                <form action='{{ route("search") }}' method='POST' class='relative search-form'>
                     @CSRF
                     <img src='/images/general/search.png' class='absolute top-0 left-0 w-5 h-5 ml-3 mt-3 fa fa-search' style='top:2px; left:2px' />
                     <input type='text' name='symbol' value="{{ $searchTerm ?? '' }}" class='transition-all duration-300 ease-out shadow focus:outline-none w-48 py-3 input-search' />
@@ -72,6 +72,7 @@
             @CSRF
             <input type='hidden' name='subscriptions' class='subscription-symbols' value="">
             <input type='hidden' name='unsubscriptions' class='unsubscription-symbols' value="">
+            <input type='hidden' name='types' class='types' value="">
             <input type='hidden' name='companies' class='companies' value="">
             <button type='submit' class='focus:outline-none bg-yeet-blue p-3 text-white'>Update</button>
         </form>
@@ -79,12 +80,14 @@
 @endsection
 
 @section('js')
+    <script src='/js/search.js'></script>
     <script>
         const initialSubscriptions = @json($type === "all" ? $symbols : $subscriptions);
         const subscriptions = @json($type === "all" ? $symbols : $subscriptions);
         const unsubscriptions = [];
         const updateSubscriptions = $('.update-subscriptions');
         const companies = {};
+        const types = {};
         const actions = $('.action');
 
         actions.click(function() {
@@ -96,10 +99,12 @@
             const check = action.next();
             const symbol = action.parent().parent().find('.symbol').text();
             const name = action.parent().parent().find('.name').text();
+            const type = action.parent().parent().find('.type').text();
 
             if(action.hasClass('action-subscribe')) {
                 subscriptions.push(symbol);
                 companies[symbol] = name;
+                types[symbol] = type;
                 const index = unsubscriptions.findIndex(unsubscription => unsubscription === symbol);
                 if(index !== -1) {
                     unsubscriptions.splice(index, 1);
@@ -112,6 +117,7 @@
                 const index = subscriptions.findIndex(subscription => subscription === symbol);
                 subscriptions.splice(index, 1);
                 delete companies[symbol];
+                delete types[symbol];
                 if(initialSubscriptions.includes(symbol)) {
                     if(!unsubscriptions.includes(symbol)) {
                         unsubscriptions.push(symbol);
@@ -151,6 +157,7 @@
             const subscriptionsInput = $('.subscription-symbols');
             const unsubscriptionsInput = $('.unsubscription-symbols');
             const companiesInput = $('.companies');
+            const typesInput = $('.types');
             let subscriptionsText = '';
             let unsubscriptionsText = '';
             const subscriptions_ = subscriptions.filter(subscription => !initialSubscriptions.includes(subscription));
@@ -166,6 +173,7 @@
             subscriptionsInput.val(subscriptionsText);
             unsubscriptionsInput.val(unsubscriptionsText);
             companiesInput.val(JSON.stringify(companies));
+            typesInput.val(JSON.stringify(types));
         }
     </script>
 @endsection

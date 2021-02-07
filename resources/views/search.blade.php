@@ -8,6 +8,7 @@
             <div class='col-span-4 bg-white flex flex-col mb-5 p-5 shadow'>
                 <p class='m-0 mb-3 symbol'>{{ $result->symbol }}</p>
                 <p class='m-0 mb-3 text-sm name'>{{  strlen($result->company) > 40 ? substr($result->company, 0, 37) . '...' : $result->company }}</p>
+                <p class='m-0 text-sm hidden type'>{{ $result->type }}</p>
                 <div class='flex flex-row justify-between items-center'>
                     <p class='m-0 cursor-pointer text-sm action 
                     {{ in_array($result->symbol, $subscriptions) ? "action-unsubscribe" : "action-subscribe" }}'>

@@ -57,6 +57,7 @@ class SubscriptionsController extends Controller
         $subscriptions = explode('|', $this->request->subscriptions);
         $unsubscriptions = explode('|', $this->request->unsubscriptions);
         $this->companies = json_decode($this->request->companies, true);
+        $this->types = json_decode($this->request->types, true);
 
         $subscriptions = array_filter($subscriptions, function($subscription) {
             return $subscription !== '';
@@ -80,7 +81,8 @@ class SubscriptionsController extends Controller
     public function subscribe($subscriptions, $type) {
 
         foreach($subscriptions as $subscription) {
-            $symbol = Symbol::firstOrCreate(['name' => $subscription], ['company' => $this->companies[$subscription], 'type'=> $type]);
+            $typeValue = $type === 'search' ? $this->types[$subscription] : $type;
+            $symbol = Symbol::firstOrCreate(['name' => $subscription], ['company' => $this->companies[$subscription], 'type'=> $typeValue]);
             Subscription::create(['user_id' => Auth::id(), 'symbol_id' => $symbol->id]);
         }
     }

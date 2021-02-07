@@ -50,7 +50,7 @@ class SearchController extends Controller
         }, $subscribedSymbols);
 
         return view('search')
-        ->with('title', $request->symbol)
+        ->with('title', $request->symbol. ' - Search Results')
         ->with('type', 'search')
         ->with('results', $results)
         ->with('numElements', $numElements)
@@ -73,6 +73,7 @@ class SearchController extends Controller
         $stocks = json_decode($string)->stocks;
         $stocks = array_filter($stocks, function($stock) {
             if(strtolower(substr($stock->symbol, 0, strlen($this->symbol))) === $this->symbol) {
+                $stock->type = 'stock';
                 return $stock;
             }
         });
@@ -96,6 +97,7 @@ class SearchController extends Controller
             $object = new \stdClass;
             $object->symbol = array_keys($currency)[0];
             $object->company = array_values($currency)[0];
+            $object->type = 'crypto';
             return $object;
         }, $crypto);
         return $crypto;

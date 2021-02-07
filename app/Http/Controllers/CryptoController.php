@@ -38,8 +38,14 @@ class CryptoController extends Controller
         $numElements = config('app.elements_per_page');
         $start = (225 * ($index - 1)) + ($numElements * ($page - 1))  ;
         $crypto = array_slice($crypto, $start, $numElements);
+        $crypto = array_map(function($currency) {
+            $object = new \stdClass;
+            $object->symbol = array_keys($currency)[0];
+            $object->company = array_values($currency)[0];
+            return $object;
+        }, $crypto);
 
-        $cryptoSymbols = Auth::user()->symbols('crypto');
+        $cryptoSymbols = Auth::user()->symbols('crypto'); 
 
         $symbols = array_map(function($crypto) {
             return $crypto['name'];

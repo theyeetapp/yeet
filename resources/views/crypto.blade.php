@@ -6,15 +6,16 @@
     <div class='grid grid-cols-12 col-gap-5 mb-5'>
         @foreach($crypto as $currency)
             <div class='col-span-4 bg-white flex flex-col mb-5 p-5 shadow'>
-                <p class='m-0 mb-3 symbol'>{{ array_keys($currency)[0] }}</p>
-                <p class='m-0 mb-3 text-sm name'>{{  strlen(array_values($currency)[0]) > 40 ? substr(array_values($currency)[0], 0, 37) . '...' : array_values($currency)[0] }}</p>
+                <p class='m-0 mb-3 symbol'>{{ $currency->symbol }}</p>
+                <p class='m-0 mb-3 text-sm name'>{{  strlen($currency->company) > 40 ? substr($currency->company, 0, 37) . '...' : $currency->company }}</p>
+                <p class='m-0 text-sm hidden type'>{{ $type }}</p>
                 <div class='flex flex-row justify-between items-center'>
                     <p class='m-0 cursor-pointer text-sm action 
-                    {{ in_array(array_keys($currency)[0], $subscriptions) ? "action-unsubscribe" : "action-subscribe" }}'>
-                        {{ in_array(array_keys($currency)[0], $subscriptions) ? "unsubscribe" : "subscribe" }}
+                    {{ in_array($currency->symbol, $subscriptions) ? "action-unsubscribe" : "action-subscribe" }}'>
+                        {{ in_array($currency->symbol, $subscriptions) ? "unsubscribe" : "subscribe" }}
                     </p>
 
-                    @if(in_array(array_keys($currency)[0], $subscriptions))
+                    @if(in_array($currency->symbol, $subscriptions))
                         <i class='fa fa-check-circle' style='color:#537A5A'></i>
                     @else 
                         <i class='fa' style='color:#537A5A'></i>
