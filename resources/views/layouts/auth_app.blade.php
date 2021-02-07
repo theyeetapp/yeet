@@ -55,10 +55,10 @@
             <div class='py-8 flex flex-row justify-between items-center'>
                 <div class='flex flex-col'>
                 </div>
-                <form class='relative'>
+                <form action='{{ route("search") }}' method='POST' class='relative'>
                     @CSRF
                     <img src='/images/general/search.png' class='absolute top-0 left-0 w-5 h-5 ml-3 mt-3 fa fa-search' style='top:2px; left:2px' />
-                    <input type='text' class='transition-all duration-300 ease-out shadow focus:outline-none w-48 py-3 input-search' />
+                    <input type='text' name='symbol' value="{{ $searchTerm ?? '' }}" class='transition-all duration-300 ease-out shadow focus:outline-none w-48 py-3 input-search' />
                 </form>
             </div>
             <div class='pt-2 pb-5'>

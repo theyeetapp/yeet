@@ -16,7 +16,7 @@
         <p class='m-0 text-lg'><a href='{{ route("signup") }}'>Signup</a></p>
     </div>
         <div class='auth__container flex flex-col'>
-            <form class='relative bg-white rounded p-8' action='{{ route("login") }}' method='POST'>
+            <form class='relative login bg-white rounded p-8' action='{{ route("login") }}' method='POST'>
                 @CSRF
                 <div class='flex flex-col mb-4'>
                     <label for='email' class='text-gray-800 mb-2'>Email</label>
@@ -25,7 +25,6 @@
                 <div class='flex flex-col mb-6'>
                     <div class='flex flex-row justify-between items-end mb-2'>
                         <label for='email' class='text-gray-800'>Password</label>
-                        <p class='m-0 cursor-pointer'>Forgot?</p>
                     </div>
                     <input type='password' id='password' name='password' class='password focus:outline-none p-3 border' placeholder="Password">
                 </div>

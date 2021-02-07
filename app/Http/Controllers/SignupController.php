@@ -34,7 +34,7 @@ class SignupController extends Controller
             return back()->withInput();
         }
 
-        $token = bin2hex(openssl_random_pseudo_bytes(80));
+        $token = bin2hex(openssl_random_pseudo_bytes(50));
 
         $user = User::create([
             'name' => $name,

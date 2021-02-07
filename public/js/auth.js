@@ -1,6 +1,6 @@
 $(document).ready(() => {
 
-    const form = $('form');
+    const form = $('form.signup') ?? $('form.login');
     const name = form.find('.name');
     const email = form.find('.email');
     const password = form.find('.password');

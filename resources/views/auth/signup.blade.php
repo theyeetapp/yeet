@@ -16,7 +16,7 @@
             <p class='m-0 text-lg'><a href='{{ route("login") }}'>Login</a></p>
         </div>
         <div class='auth__container flex flex-col'>
-            <form class='relative bg-white rounded p-8' action='{{ route("signup") }}' method='POST'>
+            <form class='relative signup bg-white rounded p-8' action='{{ route("signup") }}' method='POST'>
                 @CSRF
                 <div class='flex flex-col mb-4'>
                     <label for='name' class='text-gray-800 mb-2'>Name</label>

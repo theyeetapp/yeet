@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SubscriptionsController;
 use App\Http\Controllers\StocksController;
 use App\Http\Controllers\CryptoController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,6 @@ Route::middleware('auth')->group(function() {
     Route::post('/subscriptions/{type}/update', [SubscriptionsController::class, 'update'])->name('subscriptions.update');
     Route::get('/stocks', StocksController::class)->name('stocks');
     Route::get('/crypto', CryptoController::class)->name('crypto');
+    Route::any('/search', [SearchController::class, 'show'])->name('search');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
