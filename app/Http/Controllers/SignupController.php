@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerifyEmail;
 use App\Models\User;
 
 class SignupController extends Controller
@@ -32,15 +34,35 @@ class SignupController extends Controller
             return back()->withInput();
         }
 
+        $token = bin2hex(openssl_random_pseudo_bytes(80));
+
         $user = User::create([
             'name' => $name,
             'email' => $email,
             'password' => Hash::make($password),
+            'activation_token' => $token,
             'avatar' => NULL
         ]);
-
-        event(new Registered($user));
+        
+        Mail::to($user)->send(new VerifyEmail($user));
         $request->session()->flash('message', 'continue at your email');
         return back();
+    }
+
+    public function verifyEmail(Request $request, $token)
+    {
+        $user = User::firstWhere('activation_token', $token);
+        
+        if(!$user) {
+            $request->session()->flash('error', 'email verification failed');
+            return redirect()->route('signup');
+        }
+
+        $user->activation_token = NULL;
+        $user->save();
+        Auth::login($user);
+        $request->session()->regenerate();
+        $request->session()->flash('message', 'email verified successfully');
+        return redirect()->route('subscriptions');
     }
 }

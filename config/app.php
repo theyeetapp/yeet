@@ -180,6 +180,8 @@ return [
 
     'elements_per_page' => env('ELEMENTS_PER_PAGE', 20),
 
+    'root' => dirname(dirname(__FILE__)),
+
     /*
     |--------------------------------------------------------------------------
     | Class Aliases

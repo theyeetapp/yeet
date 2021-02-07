@@ -40,7 +40,7 @@
     <div class='quicksand'>
         <div class='hero grid grid-cols-12'>
             <div class='col-span-12 lg:col-span-5 h-full flex flex-col justify-center text-white px-8 sm:px-12 bsm:px-20 bg-yeet-blue'>
-                <p class='m-0 mb-3 text-xl'>yeet</p>
+                <p class='m-0 mb-3 text-xl'>Yeet</p>
                 <div class='text-md pr-10 mb-4'>
                     financial market monitoring made simple. <p class='m-0 hidden sm:inline'>easily keep track of your stock and crypto-currency portfolios</p>
                 </div>

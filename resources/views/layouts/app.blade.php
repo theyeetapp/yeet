@@ -3,7 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#FBFBFB" />
+        <meta
+        name="yeet" 
+        content="stocks and crypto tracking made easy"
+        />
         <title>@yield('title')</title>
+        <link rel="icon" href="/images/general/favicon.png" />
         <link rel='stylesheet' href='/css/styles.css'>
         <link rel='stylesheet' href='/css/notify.css'>
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css' rel="stylesheet">

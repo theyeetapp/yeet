@@ -25,6 +25,7 @@ Route::middleware('guest')->group(function() {
 
     Route::get('/signup', [SignupController::class, 'show'])->name('signup');
     Route::post('/signup', [SignupController::class, 'signup']);
+    Route::get('/email/verify/{token}', [SignupController::class, 'verifyEmail'])->name('verify.email');
 
     Route::get('/login', [AuthController::class, 'show'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);

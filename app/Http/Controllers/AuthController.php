@@ -18,6 +18,7 @@ class AuthController extends Controller
     public function login(Request $request) {
 
         $credentials = $request->only(['email', 'password']);
+        $credentials['activation_token'] = NULL;
 
         if(Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
