@@ -35,7 +35,16 @@
                 <li class='mb-5 text-sm'>actions</li>
                 <li class='relative flex flex-row items-center mb-8' style='left:1px'>
                     <i class='fa fa-image mr-5'></i>
-                    <a href='/' class='text-sm'>change avatar</a>
+                    <p class='m-0 text-sm change-avatar cursor-pointer'>change avatar</p>
+                </li>
+                <li class='relative transition-all duration-300 ease-in flex flex-row items-center avatar-form-parent hidden mb-8' style='left:1px'>
+                    <form action='{{ route("avatar.update") }}' method='POST' enctype='multipart/form-data'>
+                        @CSRF
+                        <input type='file' name='avatar' class='hidden' />
+                        <button type='submit' class='focus:outline-none outline-none flex items-center bg-transparent text-sm'>
+                            <i class='fa fa-arrow-circle-up mr-5 text-base'></i> <p class='m-0'>update avatar</p>
+                        </button>
+                    </form>
                 </li>
                 <li class='relative flex flex-row items-center' style='left:1px'>
                     <i class='fa fa-sign-out-alt mr-5'></i>
@@ -46,7 +55,7 @@
                 </li>
             </ul>
             <div class='pt-4 px-2 flex flex-row justify-center items-center'>
-                <img src='{{Auth::user()->avatar ?? "/images/general/user.jpg"}}' class='w-10 h-10 mr-3 rounded-full' />
+                <img src='{{Auth::user()->avatar ?? "/images/general/defaultAvatar.png"}}' class='avatar object-cover w-10 h-10 mr-3 rounded-full' />
                 <p class='m-0 text-sm'>{{ Auth::user()->name }}</p>
             </div>      
         </div>
@@ -81,6 +90,7 @@
 
 @section('js')
     <script src='/js/search.js'></script>
+    <script src='/js/update-avatar.js'></script>
     <script>
         const initialSubscriptions = @json($type === "all" ? $symbols : $subscriptions);
         const subscriptions = @json($type === "all" ? $symbols : $subscriptions);

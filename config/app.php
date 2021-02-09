@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
-
+        
     ],
 
     'elements_per_page' => env('ELEMENTS_PER_PAGE', 20),
@@ -234,4 +234,7 @@ return [
 
     ],
 
+    'cloudinary_api_key' => env('CLOUDINARY_API_KEY'),
+    'cloudinary_api_secret' => env('CLOUDINARY_API_SECRET'),
+    'cloudinary_cloud_name' => env('CLOUDINARY_CLOUD_NAME')
 ];

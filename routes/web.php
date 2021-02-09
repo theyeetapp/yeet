@@ -8,6 +8,7 @@ use App\Http\Controllers\SubscriptionsController;
 use App\Http\Controllers\StocksController;
 use App\Http\Controllers\CryptoController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AvatarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function() {
     Route::post('/subscriptions/{type}/update', [SubscriptionsController::class, 'update'])->name('subscriptions.update');
     Route::get('/stocks', StocksController::class)->name('stocks');
     Route::get('/crypto', CryptoController::class)->name('crypto');
-    Route::any('/search', [SearchController::class, 'show'])->name('search');
+    Route::match(['get', 'post'], '/search', [SearchController::class, 'show'])->name('search');
+    Route::post('/avatar/update', [AvatarController::class, 'update'])->name('avatar.update');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
