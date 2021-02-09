@@ -60,7 +60,7 @@
             </div>      
         </div>
 
-        <div class='main flex flex-col px-16'>
+        <div class='main flex flex-col px-8 sm:px-16'>
             <div class='py-8 flex flex-row justify-between items-center'>
                 <div class='flex flex-col'>
                 </div>

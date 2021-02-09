@@ -12,6 +12,21 @@
     width:83.33vw;
 }
 
+
+@media(max-width:1025px)
+{
+    .sidebar
+    {
+        display: none;
+    }
+
+    .main
+    {
+        margin-left:0;
+        width:100vw;
+    }
+}
+
 .input-search
 {
     padding-left:45px;
