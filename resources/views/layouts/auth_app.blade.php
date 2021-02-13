@@ -7,42 +7,45 @@
 
 @section('css')
     <link rel='stylesheet' href='/css/custom-styles.css' />
+    @if($type === 'all' || $type === 'search')
+        <link rel='stylesheet' href='/css/subscriptions.css' />
+    @endif
 @endsection
 
 @section('body')
     <div class='w-screen min-h-screen bg-light-gray quicksand'>
-        <div class='sidebar h-full bg-yeet-blue flex flex-col justify-between lg:justify-start  px-4 sm:px-8 md:px-12 py-6 sm:py-10 lg:py-8 lg:px-5 text-white'>
-            <div class='invisible lg:visible py-5 w-full flex flex-row items-center px-4 lg:mb-8'>
+        <div class='sidebar h-full bg-yeet-blue flex flex-col justify-between px-4 sm:px-8 md:px-12 py-10 sm:py-10 lg:py-8 lg:px-5 text-white'>
+            <div class='invisible sm:visible sm:py-5 w-full flex flex-row items-center px-4'>
                 <i class='relative fa fa-home text-sm mr-5' style='bottom:1px'></i>
                 <p class='m-0 text-sm'>yeet</p>
             </div>
             <div class='flex flex-col'>
                 <ul class='text-light-gray px-4'>
                     <li class='mb-5 text-sm'>pages</li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-8 {{ $type === "all" ? "text-steel-blue" : "" }}'>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-4 xs:mb-8 {{ $type === "all" || $type === "search" ? "text-steel-blue" : "" }}'>
                         <i class='fa fa-check-circle mr-5'></i>
                         <a href='{{ route("subscriptions") }}' class='text-sm'>subscriptions</a>
                     </li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-8 {{ $type === "stock" ? "text-steel-blue" : "" }}'>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-4 xs:mb-8 {{ $type === "stock" ? "text-steel-blue" : "" }}'>
                         <i class='fa fa-coins mr-5'></i>
                         <a href='{{ route("stocks") }}' class='text-sm'>stocks</a>
                     </li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-8 {{ $type === "crypto" ? "text-steel-blue" : "" }}'>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-4 xs:mb-8 {{ $type === "crypto" ? "text-steel-blue" : "" }}'>
                         <i class='fab fa-bitcoin mr-5'></i>
                         <a href='{{ route("crypto") }}' class='text-sm'>crypto</a>
                     </li>
                 </ul>
-                <ul class='px-4 lg:mb-auto'>
+                <ul class='px-4'>
                     <li class='mb-5 text-sm'>actions</li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center mb-8' style='left:1px'>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center mb-4 xs:mb-8' style='left:1px'>
                         <i class='relative fa fa-robot mr-4' style='left:-2px'></i>
                         <p class='m-0 text-sm change-avatar cursor-pointer'>yeetbot</p>
                     </li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center mb-8' style='left:1px'>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center mb-4 xs:mb-8' style='left:1px'>
                         <i class='fa fa-image mr-5'></i>
                         <p class='m-0 text-sm change-avatar cursor-pointer'>change avatar</p>
                     </li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative transition-all duration-300 ease-in flex flex-row items-center avatar-form-parent hidden mb-8' style='left:1px'>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center avatar-form-parent hidden mb-4 xs:mb-8' style='left:1px'>
                         <form action='{{ route("avatar.update") }}' method='POST' enctype='multipart/form-data'>
                             @CSRF
                             <input type='file' name='avatar' class='hidden' />
@@ -86,14 +89,14 @@
     <div class='blocker'>
     </div>
 
-    <div class='update-subscriptions work-sans transition-all duration-300 ease-in fixed left-0 w-screen py-5 px-12 shadow-md bg-white flex flex-row justify-end'>
+    <div class='update-subscriptions work-sans transition-all duration-300 ease-in fixed left-0 w-screen py-4 px-4 lg:px-8 shadow-md bg-white flex flex-row justify-end'>
         <form action='{{ route("subscriptions.update", ["type" => $type]) }}' method='POST'>
             @CSRF
             <input type='hidden' name='subscriptions' class='subscription-symbols' value="">
             <input type='hidden' name='unsubscriptions' class='unsubscription-symbols' value="">
             <input type='hidden' name='types' class='types' value="">
             <input type='hidden' name='companies' class='companies' value="">
-            <button type='submit' class='focus:outline-none bg-yeet-blue p-3 text-white'>Update</button>
+            <button type='submit' class='focus:outline-none bg-yeet-blue p-2 md:p-3 text-white'>Update</button>
         </form>
     </div>
 @endsection

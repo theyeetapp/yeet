@@ -73,6 +73,14 @@
     width:240px;
 }
 
+@media(max-width:330px)
+{
+    .input-search:focus
+    {
+        width:200px;
+    }
+}
+
 .input-search::-webkit-input-placeholder
 { 
     color: #333;

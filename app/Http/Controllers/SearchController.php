@@ -52,6 +52,7 @@ class SearchController extends Controller
         return view('search')
         ->with('title', $request->symbol. ' - Search Results')
         ->with('type', 'search')
+        ->with('total', $total)
         ->with('results', $results)
         ->with('numElements', $numElements)
         ->with('index', $index)

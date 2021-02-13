@@ -4,25 +4,37 @@
 @section('content') 
 
     <div class='grid grid-cols-12 col-gap-5 mb-5 md:mt-5 lg:mt-0'>
-        @foreach($results as $result)
-            <div class='col-span-12 md:col-span-4 bg-white flex flex-col mb-5 p-5 shadow'>
-                <p class='m-0 mb-3 symbol'>{{ $result->symbol }}</p>
-                <p class='m-0 mb-3 text-sm name'>{{  strlen($result->company) > 40 ? substr($result->company, 0, 37) . '...' : $result->company }}</p>
-                <p class='m-0 text-sm hidden type'>{{ $result->type }}</p>
-                <div class='flex flex-row justify-between items-center'>
-                    <p class='m-0 cursor-pointer text-sm action 
-                    {{ in_array($result->symbol, $subscriptions) ? "action-unsubscribe" : "action-subscribe" }}'>
-                        {{ in_array($result->symbol, $subscriptions) ? 'unsubscribe' : 'subscribe' }}
-                    </p>
-                    
-                    @if(in_array($result->symbol, $subscriptions))
-                        <i class='fa fa-check-circle' style='color:#537A5A'></i>
-                    @else 
-                        <i class='fa' style='color:#537A5A'></i>
-                    @endif
+        @if(count($results) > 0)
+            <div class='col-span-12 text-lg text-gray-800 lg:text-md mb-5'>
+                {{ $total }} search result(s) for "{{ $searchTerm }}"
+            </div>
+            @foreach($results as $result)
+                <div class='col-span-12 md:col-span-4 bg-white flex flex-col mb-5 p-5 shadow'>
+                    <p class='m-0 mb-3 symbol'>{{ $result->symbol }}</p>
+                    <p class='m-0 mb-3 text-sm name'>{{  strlen($result->company) > 40 ? substr($result->company, 0, 37) . '...' : $result->company }}</p>
+                    <p class='m-0 text-sm hidden type'>{{ $result->type }}</p>
+                    <div class='flex flex-row justify-between items-center'>
+                        <p class='m-0 cursor-pointer text-sm action 
+                        {{ in_array($result->symbol, $subscriptions) ? "action-unsubscribe" : "action-subscribe" }}'>
+                            {{ in_array($result->symbol, $subscriptions) ? 'unsubscribe' : 'subscribe' }}
+                        </p>
+                        
+                        @if(in_array($result->symbol, $subscriptions))
+                            <i class='fa fa-check-circle' style='color:#537A5A'></i>
+                        @else 
+                            <i class='fa' style='color:#537A5A'></i>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        @else 
+            <div class='col-span-12 no-items flex flex-row items-center justify-center'>
+                <div class='flex flex-col no-items__content items-center'>
+                    <img src='/images/subscriptions/direction.svg' class='no-items__image mb-8'>
+                    <p class='m-0 no-items__message text-lg text-center'>No search results for "{{ $searchTerm }}"</p>
                 </div>
             </div>
-        @endforeach
+        @endif
     </div>
     <div class='w-full grid grid-cols-12 col-gap-5'>
         @if($index > 1 && $index <= $maxIndex)

@@ -18,10 +18,10 @@
                 </div>
             @endforeach
         @else 
-            <div class='col-span-12 flex flex-row items-center justify-center' style='height:calc(100vh - 150px)'>
-                <div class='relative flex flex-col items-center' style='top:-8vh'>
-                    <img src='/images/subscriptions/direction.svg' class='mb-8' style='width:250px'>
-                    <p class='m-0 text-lg text-center' style='width:400px'>You are not subscribed to any stocks or crypto. Get subscribing. Get tracking.</p>
+            <div class='col-span-12 no-items flex flex-row items-center justify-center'>
+                <div class='flex flex-col no-items__content items-center'>
+                    <img src='/images/subscriptions/direction.svg' class='no-items__image mb-8'>
+                    <p class='m-0 no-items__message text-lg text-center'>You are not subscribed to any stocks or crypto. Get subscribing. Get tracking.</p>
                 </div>
             </div>
         @endif
