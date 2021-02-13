@@ -30,7 +30,7 @@
             <div class='flex flex-col-reverse bmd:grid bmd:grid-cols-12 col-gap-5 px-5 sm:px-10 py-10 bmd:p-16 bg-white sm:shadow-md'>
                 <div class='w-full bmd:col-span-6 flex flex-col justify-center lowercase bmd:pr-5'>
                     <p class='m-0 mb-4 bmd:mb-5 text-lg text-center bmd:text-left font-semibold'>What is Yeet and what can it do for you</p>
-                    <p class='m-0 text-base leading-7 text-justify'>Yeet is the ultimate tracking tool for your favorite stocks and crypto. with 
+                    <p class='m-0 text-base leading-7 text-center sm:text-justify'>Yeet is the ultimate tracking tool for your favorite stocks and crypto. with 
                     over 2000 stocks and 3000 crytocurrencies available always be aware of the current state of your investment or stocks portfolio.
                     With Yeet, there is simply no need to be checking out stocks or cryptocurrencies you are interested in by yourself every day. Instead,
                     have Yeet do that for you. Yeet will deliver the current share price of your favorite stocks and crypto
@@ -55,10 +55,10 @@
             </div>
             <div class='px-5 sm:px-0 h-full bmd:hidden col-span-12 flex flex-col items-center justify-center'>
                 <p class='m-0 mb-3 text-xl'>YeetBot</p>
-                <p class='m-0 mb-3 leading-7 text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
+                <p class='m-0 mb-3 leading-7 text-center sm:text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
                 the automated stock and cryptocurrency tracking services provided by Yeet, user Telegram information
                 must be registered with him. Every night at 8:00 PM, he delivers roundups of all stocks and cryptocurrencies you are subscribed to.</p>
-                <a href='{{ route("signup") }}' class='py-4 px-6 text-white text-md shadow-md mr-4' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
+                <a href='{{ route("signup") }}' class='py-4 px-6 text-white text-md shadow-md' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
         </div>
         <div class='py-8 sm:py-12 md:py-24 px-8 sm:px-12 md:px-20 lg:pl-28 lg:pr-24 bg-light-gray'>
@@ -68,7 +68,7 @@
                 </div>
                 <div class='w-full text-justify sm:text-left lg:w-1/2 lg:pl-10 flex flex-col'>
                     <div class='mb-4'>
-                        <p class='m-0 text-justify'>Getting started with yeet is very easy. Easy like counting 1, 2, 3, 4. Follow the steps below
+                        <p class='m-0 text-justify'>Getting started with Yeet is very straight forward and easy. Easy like counting 1, 2, 3, 4. Follow the steps below
                         and in no time you will be enjoying the convenience Yeet provides.</p>
                     </div>
                     <div class='flex flex-col mb-4'>
@@ -90,13 +90,13 @@
                 </div>
             </div>
         </div>
-        <div class='bg-yeet-blue grid grid-cols-12 py-12 bsm:py-20 px-10 lg:p-20 text-white'>
-            <div class='col-span-12 mb-4 bsm:mb-0 bsm:col-span-4 flex flex-col bsm:pl-5 bmd:pl-10 lg:px-10'>
-                <p class='m-0 mb-2 text-xl'>Yeet</p>
-                <div>Providing ease in share price tracking and monitoring by leveraging core technologies. <p class='m-0 hidden bmd:inline'>Stay updated with your favorite stocks and cryptocurrencies.</p></div>
+        <div class='bg-yeet-blue flex flex-col md:flex-row justify-around py-12 bsm:py-20 px-10 lg:py-20 bmd:px-0 lg:px-10 text-white'>
+            <div class='mb-5 md:mb-0 flex flex-col'>
+                <p class='m-0 mb-2 md:mb-4 text-xl uppercase'>Yeet</p>
+                <div class='md:w-48 lg:w-64'>Providing ease in share price tracking and monitoring by leveraging core technologies. Stay up to date always.</div>
             </div>
-            <div class='col-span-12 mb-4 bsm:mb-0 bsm:col-start-5 bsm:col-span-5 flex flex-col bsm:pl-12 lg:pl-32'>
-                <p class='m-0 mb-2 bsm:mb-3 text-xl'>Contact</p>
+            <div class='mb-5 md:mb-0 flex flex-col'>
+                <p class='m-0 mb-2 md:mb-4 text-lg md:text-xl uppercase'>Contact</p>
                 <p class='m-0 mb-2 bsm:mb-3'>
                     <i class='fas fa-map-marker-alt mr-3'></i>
                     3, Bisi Awosika street, Ologolo, Lekki
@@ -110,8 +110,8 @@
                     <a href='mailto:olamileke.dev@gmail.com'>olamileke.dev@gmail.com</a>
                 </p>
             </div>
-            <div class='col-span-12 bsm:col-start-10 bsm:col-span-3 lg:pl-12 bsm:ml-8 flex flex-col'>
-                <p class='m-0 mb-2 bsm:mb-3 text-xl'>Social Media</p>
+            <div class='flex flex-col'>
+                <p class='m-0 mb-2 md:mb-4 text-lg md:text-xl uppercase'>Social Media</p>
                 <p class='m-0 mb-2 bsm:mb-3'>
                     <i class='fab fa-facebook mr-3'></i>
                     <a href='http://facebook.com' target="blank">Facebook</a>

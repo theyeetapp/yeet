@@ -9,6 +9,7 @@ use App\Http\Controllers\StocksController;
 use App\Http\Controllers\CryptoController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\PasswordResetsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ Route::middleware('guest')->group(function() {
 
     Route::get('/authenticate/google', [AuthController::class, 'authGoogle'])->name('auth.google');
     Route::get('/google/login', [AuthController::class, 'googleLogin'])->name('google.login');
+
+    Route::get('/password/change/send', [PasswordResetsController::class, 'sendEmail'])->name('reset.mail');
+    Route::get('/password/change/{token}', [PasswordResetsController::class, 'show'])->name('reset.show');
+    Route::post('/password/change', [PasswordResetsController::class, 'reset'])->name('password.reset');
 }); 
 
 Route::middleware('auth')->group(function() {

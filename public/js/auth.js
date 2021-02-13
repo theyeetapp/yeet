@@ -1,6 +1,7 @@
 $(document).ready(() => {
 
-    const form = $('form.signup') ?? $('form.login');
+    const path = window.location.pathname;
+    const form = $('form');
     const name = form.find('.name');
     const email = form.find('.email');
     const password = form.find('.password');
@@ -19,7 +20,7 @@ $(document).ready(() => {
 
         $('.error-name').remove();
 
-        if(window.location.pathname === '/login') {
+        if(path === '/login' || path.startsWith('/password/change')) {
             return true;
         }
 
@@ -32,6 +33,10 @@ $(document).ready(() => {
     }
 
     const validateEmail = () => {
+
+        if(path.startsWith('/password/change')) {
+            return true;
+        }
 
         $('.error-email').remove();
         
