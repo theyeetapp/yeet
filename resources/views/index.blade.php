@@ -2,70 +2,7 @@
 @extends('layouts/app')
 
 @section('css')
-
-    <style>
-        .hero
-        {
-            height:100vh;
-        }
-
-        .services-image
-        {
-            height:410px;
-        }
-
-        .setup-image
-        {
-            height:570px;
-        }
-
-        .bot-image 
-        {
-            height:550px;
-        }
-
-        @media(max-width:1025px)
-        {
-            .hero
-            {
-                height:60vh;
-            }
-        }
-
-        @media(max-width:810px)
-        {
-            .bot-image
-            {
-                height:450px;
-            }
-        }
-
-        @media(max-width:769px) 
-        {
-            .services-image
-            {
-                height:400px;
-            }
-
-            .bot-image
-            {
-                height:400px;
-            } 
-
-            .setup-image
-            {
-                height:500px;
-            }
-        }
-
-        @media(max-width:576px)
-        {
-            .hero
-            {
-                height:70vh;
-            }
-        }
-    </style>
+    <link rel='stylesheet' href='/css/home.css' />
 @endsection
 
 @section('title')

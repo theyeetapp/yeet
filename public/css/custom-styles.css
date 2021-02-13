@@ -12,18 +12,53 @@
     width:83.33vw;
 }
 
+.blocker
+{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background:rgba(0,0,0,0.2);
+    z-index:-9999;
+    opacity: 0;
+    transition:opacity 0.5s ease-in;
+}
+
+.blocker.active
+{
+    z-index:30;
+    opacity:1;
+}
 
 @media(max-width:1025px)
 {
     .sidebar
     {
-        display: none;
+        width:40vw;
+        left:-40vw;
+        transition:left 0.5s ease-in;
+        z-index:50;
+    }
+
+    .sidebar.active
+    {
+        left:0;
     }
 
     .main
     {
         margin-left:0;
         width:100vw;
+    }
+}
+
+@media(max-width:576px)
+{
+    .sidebar
+    {
+        width:60vw;
+        left:-60vw;
     }
 }
 

@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class='grid grid-cols-12 col-gap-5 mb-5'>
+    <div class='grid grid-cols-12 col-gap-5 mb-5 md:mt-5 lg:mt-0'>
         @if(count($subscriptions) > 0)
             @foreach($subscriptions as $subscription)
                 <div class='col-span-12 md:col-span-4 bg-white flex flex-col mb-5 p-5 shadow'>

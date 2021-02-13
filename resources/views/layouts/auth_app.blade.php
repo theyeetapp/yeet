@@ -11,58 +11,65 @@
 
 @section('body')
     <div class='w-screen min-h-screen bg-light-gray quicksand'>
-        <div class='sidebar h-full bg-yeet-blue flex flex-col py-8 px-5 text-white'>
-            <div class='py-5 w-full flex flex-row items-center px-4 mb-12'>
+        <div class='sidebar h-full bg-yeet-blue flex flex-col justify-between lg:justify-start  px-4 sm:px-8 md:px-12 py-6 sm:py-10 lg:py-8 lg:px-5 text-white'>
+            <div class='invisible lg:visible py-5 w-full flex flex-row items-center px-4 lg:mb-8'>
                 <i class='relative fa fa-home text-sm mr-5' style='bottom:1px'></i>
                 <p class='m-0 text-sm'>yeet</p>
             </div>
-            <ul class='text-light-gray px-4'>
-                <li class='mb-5 text-sm'>pages</li>
-                <li class='flex flex-row items-center mb-8'>
-                    <i class='fa fa-check-circle mr-5'></i>
-                    <a href='{{ route("subscriptions") }}' class='text-sm'>subscriptions</a>
-                </li>
-                <li class='flex flex-row items-center mb-8'>
-                    <i class='fa fa-coins mr-5'></i>
-                    <a href='{{ route("stocks") }}' class='text-sm'>stocks</a>
-                </li>
-                <li class='flex flex-row items-center mb-8'>
-                    <i class='fab fa-bitcoin mr-5'></i>
-                    <a href='{{ route("crypto") }}' class='text-sm'>crypto</a>
-                </li>
-            </ul>
-            <ul class='px-4 mb-auto'>
-                <li class='mb-5 text-sm'>actions</li>
-                <li class='relative flex flex-row items-center mb-8' style='left:1px'>
-                    <i class='fa fa-image mr-5'></i>
-                    <p class='m-0 text-sm change-avatar cursor-pointer'>change avatar</p>
-                </li>
-                <li class='relative transition-all duration-300 ease-in flex flex-row items-center avatar-form-parent hidden mb-8' style='left:1px'>
-                    <form action='{{ route("avatar.update") }}' method='POST' enctype='multipart/form-data'>
-                        @CSRF
-                        <input type='file' name='avatar' class='hidden' />
-                        <button type='submit' class='focus:outline-none outline-none flex items-center bg-transparent text-sm'>
-                            <i class='fa fa-arrow-circle-up mr-5 text-base'></i> <p class='m-0'>update avatar</p>
-                        </button>
-                    </form>
-                </li>
-                <li class='relative flex flex-row items-center' style='left:1px'>
-                    <i class='fa fa-sign-out-alt mr-5'></i>
-                    <form action='{{ route("logout") }}' method='POST'>
-                        @CSRF
-                        <button type='submit' class='focus:outline-none text-sm'>logout</button>
-                    </form>
-                </li>
-            </ul>
-            <div class='pt-4 px-2 flex flex-row justify-center items-center'>
+            <div class='flex flex-col'>
+                <ul class='text-light-gray px-4'>
+                    <li class='mb-5 text-sm'>pages</li>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-8 {{ $type === "all" ? "text-steel-blue" : "" }}'>
+                        <i class='fa fa-check-circle mr-5'></i>
+                        <a href='{{ route("subscriptions") }}' class='text-sm'>subscriptions</a>
+                    </li>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-8 {{ $type === "stock" ? "text-steel-blue" : "" }}'>
+                        <i class='fa fa-coins mr-5'></i>
+                        <a href='{{ route("stocks") }}' class='text-sm'>stocks</a>
+                    </li>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-8 {{ $type === "crypto" ? "text-steel-blue" : "" }}'>
+                        <i class='fab fa-bitcoin mr-5'></i>
+                        <a href='{{ route("crypto") }}' class='text-sm'>crypto</a>
+                    </li>
+                </ul>
+                <ul class='px-4 lg:mb-auto'>
+                    <li class='mb-5 text-sm'>actions</li>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center mb-8' style='left:1px'>
+                        <i class='relative fa fa-robot mr-4' style='left:-2px'></i>
+                        <p class='m-0 text-sm change-avatar cursor-pointer'>yeetbot</p>
+                    </li>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center mb-8' style='left:1px'>
+                        <i class='fa fa-image mr-5'></i>
+                        <p class='m-0 text-sm change-avatar cursor-pointer'>change avatar</p>
+                    </li>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative transition-all duration-300 ease-in flex flex-row items-center avatar-form-parent hidden mb-8' style='left:1px'>
+                        <form action='{{ route("avatar.update") }}' method='POST' enctype='multipart/form-data'>
+                            @CSRF
+                            <input type='file' name='avatar' class='hidden' />
+                            <button type='submit' class='focus:outline-none outline-none flex items-center bg-transparent text-sm'>
+                                <i class='fa fa-arrow-circle-up mr-5 text-base'></i> <p class='m-0'>update</p>
+                            </button>
+                        </form>
+                    </li>
+                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center' style='left:1px'>
+                        <i class='fa fa-sign-out-alt mr-5'></i>
+                        <form action='{{ route("logout") }}' method='POST'>
+                            @CSRF
+                            <button type='submit' class='focus:outline-none text-sm'>logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div class='pt-4 px-2 flex flex-row lg:justify-center items-center'>
                 <img src='{{Auth::user()->avatar ?? "/images/general/defaultAvatar.png"}}' class='avatar object-cover w-10 h-10 mr-3 rounded-full' />
                 <p class='m-0 text-sm'>{{ Auth::user()->name }}</p>
             </div>      
         </div>
 
         <div class='main flex flex-col px-8 sm:px-16'>
-            <div class='py-8 flex flex-row justify-between items-center'>
-                <div class='flex flex-col'>
+            <div class='py-8 sm:mt-3 md:mt-5 lg:mt-0 flex flex-row justify-between items-center'>
+                <div class='nav-toggle lg:invisible flex flex-col p-4 bg-yeet-blue'>
+                    <i class='fa fa-bars text-white'></i>
                 </div>
                 <form action='{{ route("search") }}' method='POST' class='relative search-form'>
                     @CSRF
@@ -74,6 +81,9 @@
                 @yield('content')
             </div>
         </div>
+    </div>
+
+    <div class='blocker'>
     </div>
 
     <div class='update-subscriptions work-sans transition-all duration-300 ease-in fixed left-0 w-screen py-5 px-12 shadow-md bg-white flex flex-row justify-end'>
@@ -90,6 +100,7 @@
 
 @section('js')
     <script src='/js/search.js'></script>
+    <script src='/js/toggle-sidebar.js'></script>
     <script src='/js/update-avatar.js'></script>
     <script>
         const initialSubscriptions = @json($type === "all" ? $symbols : $subscriptions);
