@@ -15,7 +15,7 @@
 @section('body')
     <div class='w-screen min-h-screen bg-light-gray quicksand'>
         <div class='sidebar h-full bg-yeet-blue flex flex-col justify-between px-4 sm:px-8 md:px-12 py-10 sm:py-10 lg:py-8 lg:px-5 text-white'>
-            <div class='invisible sm:visible sm:py-5 w-full flex flex-row items-center px-4'>
+            <div class='sm:py-5 w-full flex flex-row items-center px-4'>
                 <i class='relative fa fa-home text-sm mr-5' style='bottom:1px'></i>
                 <p class='m-0 text-sm'>yeet</p>
             </div>
