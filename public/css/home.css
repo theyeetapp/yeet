@@ -4,6 +4,11 @@
     height:100vh;
 }
 
+.hero__content
+{
+    padding-left:9%;
+}
+
 .services-image
 {
     height:410px;
@@ -24,6 +29,11 @@
     .hero
     {
         height:60vh;
+    }
+
+    .hero__content
+    {
+        padding-left:0;
     }
 }
 
