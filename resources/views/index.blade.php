@@ -14,12 +14,12 @@
         <div class='hero grid grid-cols-12 pl-8 sm:pl-16 md:pl-24 bmd:pl-6 bg-yeet-blue'>
             <div class='hero__content col-span-12 bmd:col-start-2 md:col-end-12 lg:col-span-5 h-full flex flex-col justify-center text-white'>
                 <p class='m-0 mb-3 text-xl'>Yeet</p>
-                <div class='text-md pr-10 mb-4'>
+                <div class='text-md pr-10 mb-5'>
                     financial market monitoring made simple. <p class='m-0 hidden sm:inline'>easily keep track of your stock and crypto-currency portfolios</p>
                 </div>
                 <div class='flex sm:ml-2 bsm:ml-0'>
-                    <a href='{{ route("signup") }}' class='py-4 px-6 text-white text-md shadow mr-4' style='width:fit-content'>signup</a>
-                    <a href='{{ route("login") }}' class='py-4 px-6 text-white text-md shadow' style='width:fit-content'>login</a>
+                    <a href='{{ route("signup") }}' class='py-4 px-6 text-md bg-steel-blue text-yeet-blue    font-semibold mr-4' style='width:fit-content'>signup</a>
+                    <a href='{{ route("login") }}' class='transition-colors ease-in duration-300 py-4 px-6 text-white text-md' style='width:fit-content'>login</a>
                 </div>
             </div>
             <div class='hidden lg:block col-span-7 relative'>
@@ -44,10 +44,10 @@
         <div class='grid grid-cols-12 px-8 sm:px-16 md:px-24 bmd:px-6 py-16 sm:py-16 lg:py-20 sm:mt-16 lg:mt-20 bg-yeet-blue text-white'>
             <div class='h-full hidden bmd:flex col-start-2 col-end-6 flex-col justify-center'>
                 <p class='m-0 mb-3 text-xl'>YeetBot</p>
-                <p class='m-0 mb-5 leading-7 text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
+                <p class='m-0 mb-6 leading-7 text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
                 the automated stock and cryptocurrency tracking services provided by Yeet, user Telegram information
                 must be registered with him. Every night at 8:00 PM, he delivers roundups of all stocks and cryptocurrencies you are subscribed to.</p>
-                <a href='{{ route("signup") }}' class='py-4 px-6 text-white text-md shadow-md mr-4' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
+                <a href='{{ route("signup") }}' class='py-4 px-6 text-white bg-steel-blue text-yeet-blue font-semibold text-md mr-4' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
             <div class='hidden sm:block relative col-span-12 mb-8 bmd:mb-0 bmd:col-start-7 bmd:col-end-12'>
                 <img src='/images/home/bot.jpg' class='w-full object-cover bot-image'>
@@ -55,10 +55,10 @@
             </div>
             <div class='h-full bmd:hidden col-span-12 flex flex-col items-center justify-center'>
                 <p class='m-0 mb-3 text-xl'>YeetBot</p>
-                <p class='m-0 mb-3 leading-7 text-center sm:text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
+                <p class='m-0 mb-6 sm:mb-8 leading-7 text-center sm:text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
                 the automated stock and cryptocurrency tracking services provided by Yeet, user Telegram information
                 must be registered with him. Every night at 8:00 PM, he delivers roundups of all stocks and cryptocurrencies you are subscribed to.</p>
-                <a href='{{ route("signup") }}' class='py-4 px-6 text-white text-md shadow-md' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
+                <a href='{{ route("signup") }}' class='py-4 px-6 text-white bg-steel-blue text-yeet-blue font-semibold text-md' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
         </div>
         <div class='py-10 sm:py-12 md:py-24 px-8 sm:px-16 md:px-24 bmd:px-6 grid grid-cols-12 bg-light-gray'>
