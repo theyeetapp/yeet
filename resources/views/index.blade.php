@@ -46,7 +46,7 @@
                 <p class='m-0 mb-3 text-xl'>YeetBot</p>
                 <p class='m-0 mb-6 leading-7 text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
                 the automated stock and cryptocurrency tracking services provided by Yeet, user Telegram information
-                must be registered with him. Every night at 8:00 PM, he delivers roundups of all stocks and cryptocurrencies you are subscribed to.</p>
+                must be registered with him. Every night at 8pm GMT +1, he delivers roundups of all stocks and cryptocurrencies you are subscribed to.</p>
                 <a href='{{ route("signup") }}' class='py-4 px-6 text-white bg-steel-blue text-yeet-blue font-semibold text-md mr-4' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
             <div class='hidden sm:block relative col-span-12 mb-8 bmd:mb-0 bmd:col-start-7 bmd:col-end-12'>
@@ -57,7 +57,7 @@
                 <p class='m-0 mb-3 text-xl'>YeetBot</p>
                 <p class='m-0 mb-6 sm:mb-8 leading-7 text-center sm:text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
                 the automated stock and cryptocurrency tracking services provided by Yeet, user Telegram information
-                must be registered with him. Every night at 8:00 PM, he delivers roundups of all stocks and cryptocurrencies you are subscribed to.</p>
+                must be registered with him. Every night at 8pm GMT +1, he delivers roundups of all stocks and cryptocurrencies you are subscribed to.</p>
                 <a href='{{ route("signup") }}' class='py-4 px-6 text-white bg-steel-blue text-yeet-blue font-semibold text-md' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
         </div>
@@ -82,11 +82,11 @@
                         </div>
                         <div class='flex flex-col mb-4'>
                             <p class='m-0 mb-2 bmd:mb-1 text-md font-semibold'>3. Register with YeetBot</p>
-                            <p class='m-0 text-justify'>Visit <a class='text-blue-800' href='#'>t.me/yeetbot</a> or open up your Telegram app and search for YeetBot. Follow its prompts to register your Telegram contact with Yeet.</p>
+                            <p class='m-0 text-justify'>Visit <a class='text-blue-800' target='_blank' href='https://t.me/theyeetbot'>t.me/theyeetbot</a> or open up your Telegram app and search for TheYeetBot. Follow its prompts to register your Telegram contact with Yeet.</p>
                         </div>
                         <div class='flex flex-col'>
                             <p class='m-0 mb-2 bmd:mb-1 text-md font-semibold'>4. Receive your Notifications</p>
-                            <p class='m-0 text-justify'>Every night at 8:00pm, YeetBot via Telegram will send you the market prices of all the stocks and crytocurrencies you are subscribed to.</p>
+                            <p class='m-0 text-justify'>Every night at 8pm GMT +1, YeetBot via Telegram will send you the market prices of all the stocks and crytocurrencies you are subscribed to.</p>
                         </div>
                     </div>
                 </div>
