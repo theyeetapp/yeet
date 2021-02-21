@@ -18,8 +18,8 @@
                     financial market monitoring made simple. <p class='m-0 hidden sm:inline'>easily keep track of your stock and crypto-currency portfolios</p>
                 </div>
                 <div class='flex sm:ml-2 bsm:ml-0'>
-                    <a href='{{ route("signup") }}' class='py-4 px-6 text-md bg-steel-blue text-yeet-blue    font-semibold mr-4' style='width:fit-content'>signup</a>
-                    <a href='{{ route("login") }}' class='transition-colors ease-in duration-300 py-4 px-6 text-white text-md' style='width:fit-content'>login</a>
+                    <a href='{{ route("signup") }}' class='bg-steel-blue text-yeet-blue font-semibold pt-3 pb-4 px-6 text-md mr-4' style='width:fit-content'>signup</a>
+                    <a href='{{ route("login") }}' class='transition-colors ease-in duration-300 py-3 px-6 text-white text-md' style='width:fit-content'>login</a>
                 </div>
             </div>
             <div class='hidden lg:block col-span-7 relative'>
@@ -27,12 +27,12 @@
             </div>
         </div>
         <div class='sm:pt-20 px-6 sm:px-16 md:px-24 lg:px-64'>
-            <div class='flex flex-col-reverse bmd:grid bmd:grid-cols-12 col-gap-5 px-5 sm:px-10 py-16 sm:py-10 bmd:p-16 bg-white sm:shadow-md'>
+            <div class='flex flex-col-reverse bmd:grid bmd:grid-cols-12 col-gap-5 px-1 sm:px-10 py-16 sm:py-10 bmd:p-16 bg-white sm:shadow-md'>
                 <div class='w-full bmd:col-span-6 flex flex-col justify-center lowercase bmd:pr-5'>
                     <p class='m-0 mb-4 bmd:mb-5 text-lg text-center bmd:text-left font-semibold'>What is Yeet and what can it do for you</p>
-                    <p class='m-0 text-base leading-7 text-center sm:text-justify'>Yeet is the ultimate tracking tool for your favorite stocks and crypto. with 
-                    over 2000 stocks and 3000 crytocurrencies available always be aware of the current state of your investment or stocks portfolio.
-                    With Yeet, there is simply no need to be checking out stocks or cryptocurrencies you are interested in by yourself every day. Instead,
+                    <p class='m-0 text-base leading-7 text-justify'>Yeet is the ultimate tracking tool for your favorite stocks and crypto. with 
+                    over 2000 stocks and 3000 crypto currencies available always be aware of the current state of your investment or stocks portfolio.
+                    With Yeet, there is simply no need to be checking out stocks or crypto currencies you are interested in by yourself every day. Instead,
                     have Yeet do that for you. Yeet will deliver the current share price of your favorite stocks and crypto
                     every night. Is that convenience or what?</p>
                 </div>
@@ -45,9 +45,9 @@
             <div class='h-full hidden bmd:flex col-start-2 col-end-6 flex-col justify-center'>
                 <p class='m-0 mb-3 text-xl'>YeetBot</p>
                 <p class='m-0 mb-6 leading-7 text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
-                the automated stock and cryptocurrency tracking services provided by Yeet, user Telegram information
-                must be registered with him. Every night at 8pm GMT +1, he delivers roundups of all stocks and cryptocurrencies you are subscribed to.</p>
-                <a href='{{ route("signup") }}' class='py-4 px-6 text-white bg-steel-blue text-yeet-blue font-semibold text-md mr-4' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
+                the automated stock and crypto tracking services provided by Yeet, user Telegram details
+                must be registered with him. Every night at 8pm GMT +1, he delivers roundups of all stocks and crypto currencies you are subscribed to.</p>
+                <a href='https://t.me/theyeetbot' class='py-4 px-6 bg-steel-blue text-yeet-blue font-semibold text-md mr-4' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
             <div class='hidden sm:block relative col-span-12 mb-8 bmd:mb-0 bmd:col-start-7 bmd:col-end-12'>
                 <img src='/images/home/bot.jpg' class='w-full object-cover bot-image'>
@@ -55,10 +55,10 @@
             </div>
             <div class='h-full bmd:hidden col-span-12 flex flex-col items-center justify-center'>
                 <p class='m-0 mb-3 text-xl'>YeetBot</p>
-                <p class='m-0 mb-6 sm:mb-8 leading-7 text-center sm:text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
-                the automated stock and cryptocurrency tracking services provided by Yeet, user Telegram information
-                must be registered with him. Every night at 8pm GMT +1, he delivers roundups of all stocks and cryptocurrencies you are subscribed to.</p>
-                <a href='{{ route("signup") }}' class='py-4 px-6 text-white bg-steel-blue text-yeet-blue font-semibold text-md' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
+                <p class='m-0 mb-6 sm:mb-8 leading-7 text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
+                the automated stock and crypto tracking services provided by Yeet, user Telegram details
+                must be registered with him. Every night at 8pm GMT +1, he delivers roundups of all stocks and crypto currencies you are subscribed to.</p>
+                <a href='https://t.me/theyeetbot' class='py-4 px-6 bg-steel-blue text-yeet-blue font-semibold text-md' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
         </div>
         <div class='py-10 sm:py-12 md:py-24 px-8 sm:px-16 md:px-24 bmd:px-6 grid grid-cols-12 bg-light-gray'>
@@ -78,7 +78,7 @@
                         </div>
                         <div class='flex flex-col mb-4'>
                             <p class='m-0 mb-2 bmd:mb-1 text-md font-semibold'>2. Add Subscriptions</p>
-                            <p class='m-0 text-justify'>From your stocks or cryptocurrencies tabs in Yeet, find stocks or crypto you have in your portfolio or simply want to monitor and subscribe to them.</p>
+                            <p class='m-0 text-justify'>From your stocks or crypto currencies tabs in Yeet, find stocks or crypto you have in your portfolio or simply want to monitor and subscribe to them.</p>
                         </div>
                         <div class='flex flex-col mb-4'>
                             <p class='m-0 mb-2 bmd:mb-1 text-md font-semibold'>3. Register with YeetBot</p>
@@ -86,7 +86,7 @@
                         </div>
                         <div class='flex flex-col'>
                             <p class='m-0 mb-2 bmd:mb-1 text-md font-semibold'>4. Receive your Notifications</p>
-                            <p class='m-0 text-justify'>Every night at 8pm GMT +1, YeetBot via Telegram will send you the market prices of all the stocks and crytocurrencies you are subscribed to.</p>
+                            <p class='m-0 text-justify'>Every night at 8pm GMT +1, YeetBot via Telegram will send you the market prices of all the stocks and crypto currencies you are subscribed to.</p>
                         </div>
                     </div>
                 </div>

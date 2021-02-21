@@ -14,38 +14,38 @@
 
 @section('body')
     <div class='w-screen min-h-screen bg-light-gray quicksand'>
-        <div class='sidebar h-full bg-yeet-blue flex flex-col justify-between px-4 sm:px-8 md:px-12 py-10 sm:py-10 lg:py-8 lg:px-5 text-white'>
-            <div class='sm:py-5 w-full flex flex-row items-center px-4'>
+        <div class='sidebar h-full bg-yeet-blue flex flex-col justify-between py-10 sm:py-10 lg:py-8 text-white'>
+            <div class='sm:py-5 w-full flex flex-row items-center px-8 sm:px-12 md:px-16 lg:px-8'>
                 <i class='relative fa fa-home text-sm mr-5' style='bottom:1px'></i>
                 <p class='m-0 text-sm'>yeet</p>
             </div>
             <div class='flex flex-col'>
-                <ul class='text-light-gray px-4'>
-                    <li class='mb-5 text-sm'>pages</li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-4 xs:mb-8 {{ $type === "all" || $type === "search" ? "text-steel-blue" : "" }}'>
+                <ul class='text-light-gray mb-4 xs:mb-6'>
+                    <li class='mb-5 text-sm px-8 sm:px-12 md:px-16 lg:px-8'>pages</li>
+                    <li class='flex flex-row items-center mb-2 xs:mb-2 py-2 xs:py-3 px-8 sm:px-12 md:px-16 lg:px-8 {{ $type === "all" || $type === "search" ? "active-link" : "" }}'>
                         <i class='fa fa-check-circle mr-5'></i>
                         <a href='{{ route("subscriptions") }}' class='text-sm'>subscriptions</a>
                     </li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-4 xs:mb-8 {{ $type === "stock" ? "text-steel-blue" : "" }}'>
+                    <li class='flex flex-row items-center mb-2 xs:mb-2 py-2 xs:py-3 px-8 sm:px-12 md:px-16 lg:px-8 {{ $type === "stock" ? "active-link" : "" }}'>
                         <i class='fa fa-coins mr-5'></i>
                         <a href='{{ route("stocks") }}' class='text-sm'>stocks</a>
                     </li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue flex flex-row items-center mb-4 xs:mb-8 {{ $type === "crypto" ? "text-steel-blue" : "" }}'>
+                    <li class='flex flex-row items-center py-2 xs:py-3 px-8 sm:px-12 md:px-16 lg:px-8 {{ $type === "crypto" ? "active-link" : "" }}'>
                         <i class='fab fa-bitcoin mr-5'></i>
                         <a href='{{ route("crypto") }}' class='text-sm'>crypto</a>
                     </li>
                 </ul>
-                <ul class='px-4'>
+                <ul class='px-8 sm:px-12 md:px-16 lg:px-8'>
                     <li class='mb-5 text-sm'>actions</li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center mb-4 xs:mb-8' style='left:1px'>
+                    <li class='relative flex flex-row items-center mb-4 xs:mb-8' style='left:1px'>
                         <i class='relative fa fa-robot mr-4' style='left:-2px'></i>
-                        <p class='m-0 text-sm change-avatar cursor-pointer'>yeetbot</p>
+                        <a href='https://t.me/theyeetbot' target='_blank' class='m-0 text-sm change-avatar cursor-pointer'>yeetbot</a>
                     </li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center mb-4 xs:mb-8' style='left:1px'>
+                    <li class='relative flex flex-row items-center mb-4 xs:mb-8' style='left:1px'>
                         <i class='fa fa-image mr-5'></i>
                         <p class='m-0 text-sm change-avatar cursor-pointer'>change avatar</p>
                     </li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center avatar-form-parent hidden mb-4 xs:mb-8' style='left:1px'>
+                    <li class='relative flex flex-row items-center avatar-form-parent hidden mb-4 xs:mb-8' style='left:1px'>
                         <form action='{{ route("avatar.update") }}' method='POST' enctype='multipart/form-data'>
                             @CSRF
                             <input type='file' name='avatar' class='hidden' />
@@ -54,7 +54,7 @@
                             </button>
                         </form>
                     </li>
-                    <li class='transition-colors duration-300 ease-in hover:text-steel-blue relative flex flex-row items-center' style='left:1px'>
+                    <li class='relative flex flex-row items-center' style='left:1px'>
                         <i class='fa fa-sign-out-alt mr-5'></i>
                         <form action='{{ route("logout") }}' method='POST'>
                             @CSRF
@@ -63,7 +63,7 @@
                     </li>
                 </ul>
             </div>
-            <div class='pt-4 px-2 flex flex-row lg:justify-center items-center'>
+            <div class='pt-4 flex flex-row lg:justify-center items-center px-8 sm:px-12 md:px-16 lg:px-8'>
                 <img src='{{Auth::user()->avatar ?? "/images/general/defaultAvatar.png"}}' class='avatar object-cover w-10 h-10 mr-3 rounded-full' />
                 <p class='m-0 text-sm'>{{ Auth::user()->name }}</p>
             </div>      

@@ -12,6 +12,11 @@
     width:83.33vw;
 }
 
+.active-link
+{
+    background:rgba(255,255,255,0.2)
+}
+
 .blocker
 {
     position:fixed;
