@@ -18,7 +18,7 @@
                     financial market monitoring made simple. <p class='m-0 hidden sm:inline'>easily keep track of your stock and crypto-currency portfolios</p>
                 </div>
                 <div class='flex sm:ml-2 bsm:ml-0'>
-                    <a href='{{ route("signup") }}' class='bg-steel-blue text-yeet-blue font-semibold pt-3 pb-4 px-6 text-md mr-4' style='width:fit-content'>signup</a>
+                    <a href='{{ route("signup") }}' class='bg-yeet-light-blue text-white pt-3 pb-4 px-6 text-md mr-4' style='width:fit-content; background:#3D518C'>signup</a>
                     <a href='{{ route("login") }}' class='transition-colors ease-in duration-300 py-3 px-6 text-white text-md' style='width:fit-content'>login</a>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <p class='m-0 mb-6 leading-7 text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
                 the automated stock and crypto tracking services provided by Yeet, user Telegram details
                 must be registered with him. Every night at 8pm GMT +1, he delivers roundups of all stocks and crypto currencies you are subscribed to.</p>
-                <a href='https://t.me/theyeetbot' class='py-4 px-6 bg-steel-blue text-yeet-blue font-semibold text-md mr-4' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
+                <a href='https://t.me/theyeetbot' class='py-4 px-6 text-white text-md mr-4' style='width:fit-content;background:#3D518C;'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
             <div class='hidden sm:block relative col-span-12 mb-8 bmd:mb-0 bmd:col-start-7 bmd:col-end-12'>
                 <img src='/images/home/bot.jpg' class='w-full object-cover bot-image'>
@@ -58,7 +58,7 @@
                 <p class='m-0 mb-6 sm:mb-8 leading-7 text-justify'>Yeet is equiped with a powerful Telegram bot named YeetBot through which users receive price notifications. An essential component of
                 the automated stock and crypto tracking services provided by Yeet, user Telegram details
                 must be registered with him. Every night at 8pm GMT +1, he delivers roundups of all stocks and crypto currencies you are subscribed to.</p>
-                <a href='https://t.me/theyeetbot' class='py-4 px-6 bg-steel-blue text-yeet-blue font-semibold text-md' style='width:fit-content'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
+                <a href='https://t.me/theyeetbot' class='py-4 px-6 text-white text-md' style='width:fit-content;background:#3D518C;'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
         </div>
         <div class='py-10 sm:py-12 md:py-24 px-8 sm:px-16 md:px-24 bmd:px-6 grid grid-cols-12 bg-light-gray'>
