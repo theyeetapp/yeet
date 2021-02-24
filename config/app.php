@@ -182,6 +182,8 @@ return [
 
     'root' => dirname(dirname(__FILE__)),
 
+    'cloudinary_url' => env('CLOUDINARY_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
@@ -233,8 +235,4 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
-    'cloudinary_api_key' => env('CLOUDINARY_API_KEY'),
-    'cloudinary_api_secret' => env('CLOUDINARY_API_SECRET'),
-    'cloudinary_cloud_name' => env('CLOUDINARY_CLOUD_NAME')
 ];

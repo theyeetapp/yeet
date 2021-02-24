@@ -23,19 +23,18 @@ class AvatarController extends Controller
             
         if(!$currentAvatar) {
             Avatar::create([
+                'url' => $avatarUrl,
                 'public_id' => $newPublicId,
                 'user_id' => Auth::id()
             ]);
         }
         else {
             (new UploadApi())->destroy($currentAvatar->public_id);
+            $currentAvatar->url = $avatarUrl;
             $currentAvatar->public_id = $newPublicId;
             $currentAvatar->save();
         }
 
-        $user = Auth::user();
-        $user->avatar = $avatarUrl;
-        $user->save();
         return back()->with('message', 'avatar updated successfully');
     }
 }

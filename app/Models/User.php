@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Models\Avatar;
 use App\Models\Symbol;
 use App\Models\Subscription;
 
@@ -24,7 +25,6 @@ class User extends Authenticatable
         'email',
         'password',
         'activation_token',
-        'avatar'
     ];
 
     protected $attributes = [
@@ -49,6 +49,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function avatar() {
+        return $this->hasOne(Avatar::class);
+    }
 
     public function symbols($type = null) {
 

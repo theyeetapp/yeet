@@ -10,8 +10,8 @@ use App\Models\User;
 class Avatar extends Model
 {
     use HasFactory;
-    protected $table = 'avatar_ids';
-    protected $fillable = ['public_id', 'user_id'];
+    protected $table = 'avatars';
+    protected $fillable = ['url', 'public_id', 'user_id'];
 
     public function user()
     {

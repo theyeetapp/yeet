@@ -41,7 +41,6 @@ class SignupController extends Controller
             'email' => $email,
             'password' => Hash::make($password),
             'activation_token' => $token,
-            'avatar' => NULL
         ]);
         
         Mail::to($user)->send(new VerifyEmail($user));

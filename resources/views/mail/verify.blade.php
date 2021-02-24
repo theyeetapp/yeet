@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Trim Activation</title>
+		<title>Yeet Email Verification</title>
 		<style type='text/css'>
 			@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
             
@@ -67,7 +67,7 @@
                         <tr>
 							<td>
 								<div style='margin-top:12px;'>
-                                    <p style='margin:0; color:#000; font-size:1em;'>
+                                    <p style='margin:0; color:#000; font-size:1em; text-decoration:none;'>
                                         {{ config("app.url") }}email/verify/{{ $user->activation_token }}
                                     </p>
 								</div>

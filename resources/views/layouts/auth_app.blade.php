@@ -17,7 +17,7 @@
         <div class='sidebar h-full bg-yeet-blue flex flex-col justify-between py-10 sm:py-10 lg:py-8 text-white'>
             <div class='sm:py-5 w-full flex flex-row items-center px-8 sm:px-12 md:px-16 lg:px-8'>
                 <i class='relative fa fa-home text-sm mr-5' style='bottom:1px'></i>
-                <p class='m-0 text-sm'>yeet</p>
+                <p class='relative m-0 text-md' style='bottom:1px;'>yeet</p>
             </div>
             <div class='flex flex-col'>
                 <ul class='text-light-gray mb-4 xs:mb-6'>
@@ -64,7 +64,7 @@
                 </ul>
             </div>
             <div class='pt-4 flex flex-row lg:justify-center items-center px-8 sm:px-12 md:px-16 lg:px-8'>
-                <img src='{{Auth::user()->avatar ?? "/images/general/defaultAvatar.png"}}' class='avatar object-cover w-10 h-10 mr-3 rounded-full' />
+                <img src='{{Auth::user()->avatar ? Auth::user()->avatar->url : "/images/general/defaultAvatar.png"}}' class='avatar object-cover w-10 h-10 mr-3 rounded-full' />
                 <p class='m-0 text-sm'>{{ Auth::user()->name }}</p>
             </div>      
         </div>

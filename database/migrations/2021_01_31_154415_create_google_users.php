@@ -33,8 +33,6 @@ class CreateGoogleUsers extends Migration
      */
     public function down()
     {
-        Schema::table('google_users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('google_users');
     }
 }
