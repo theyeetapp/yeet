@@ -18,12 +18,13 @@ class StocksController extends Controller
     public function __invoke(Request $request)
     {
        $index = $request->index ?? 1;
+       $index = (int)$index;
        
        if(!$request->page) {
            $page = 1;
        }
        else if((int)$request->page > 16) {
-           $page = 1;
+           return redirect()->route('stocks', ['index' => $index]);
        }
        else {
            $page = (int)$request->page;
@@ -36,9 +37,23 @@ class StocksController extends Controller
 
        $stocks = json_decode($string)->stocks;
        $total = count($stocks);
-       $maxIndex = ceil($total / 225);
        $numElements = config('app.elements_per_page');
-       $start = (225 * ($index - 1)) + ($numElements * ($page - 1));
+       $maxIndex = (int)ceil($total / pow($numElements, 2));
+
+       if($index > $maxIndex) {
+           return redirect()->route('stocks');
+       }
+
+       if($index === $maxIndex) {
+           $rem = $total - ($index - 1) * pow($numElements, 2);
+           $remPages = ceil($rem / $numElements);
+          
+           if($page > $remPages) {
+               return redirect()->route('stocks', ['index' => $index]);
+           }
+       }
+
+       $start = (pow($numElements, 2) * ($index - 1)) + ($numElements * ($page - 1));
        $stocks = array_slice($stocks, $start, $numElements);
 
        $stockSymbols = Auth::user()->symbols('stock'); 

@@ -18,19 +18,37 @@ class SubscriptionsController extends Controller
 
     public function show() {
         $index = $this->request->index ?? 1;
+        $index = (int)$index;
 
         if(!$this->request->page) {
             $page = 1;
         }
+        // else if((int)$this->request->page > 16) {
+        //     return redirect()->route('subscriptions', ['index' => $index]);
+        // }
         else {
             $page = $this->request->page;
         }
 
         $numElements = config('app.elements_per_page');
         $total = Auth::user()->subscriptionsCount();
-        $maxIndex = ceil($total / 225);
         $numElements = config('app.elements_per_page');
-        $start = (225 * ($index - 1)) + ($numElements * ($page - 1));
+        $maxIndex = (int)ceil($total / pow($numElements, 2));
+
+        if($index > $maxIndex && ($maxIndex !== 0)) {
+            return redirect()->route('subscriptions');
+        }
+ 
+        if($index === $maxIndex && ($maxIndex !== 0)) {
+            $rem = $total - ($index - 1) * pow($numElements, 2);
+            $remPages = ceil($rem / $numElements);
+           
+            if($page > $remPages) {
+                return redirect()->route('subscriptions', ['index' => $index]);
+            }
+        }
+
+        $start = (pow($numElements, 2) * ($index - 1)) + ($numElements * ($page - 1));
         $user = Auth::user(); 
         $subscriptions = $user->subscriptions($start, $numElements);
 

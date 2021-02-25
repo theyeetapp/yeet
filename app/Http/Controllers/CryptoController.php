@@ -18,12 +18,13 @@ class CryptoController extends Controller
     public function __invoke(Request $request)
     {
         $index = $request->index ?? 1;
+        $index = (int)$index;
         
         if(!$request->page) {
             $page = 1;
         }
         else if ((int)$request->page > 16) {
-            $page = 1;
+            return redirect()->route('crypto', ['index' => $index]);
         }
         else {
             $page = (int)$request->page;
@@ -34,9 +35,23 @@ class CryptoController extends Controller
         $string = fread($fileHandler, filesize($fileName));
         $crypto = json_decode($string, true)['crypto'];
         $total = count($crypto);
-        $maxIndex = ceil($total / 225);
         $numElements = config('app.elements_per_page');
-        $start = (225 * ($index - 1)) + ($numElements * ($page - 1))  ;
+        $maxIndex = (int)ceil($total / pow($numElements, 2));
+
+        if($index > $maxIndex) {
+            return redirect()->route('crypto');
+        }
+
+        if($index === $maxIndex) {
+            $rem = $total - ($index - 1) * pow($numElements, 2);
+            $remPages = ceil($rem / $numElements);
+
+            if($page > $remPages) {
+                return redirect()->route('crypto', ['index' => $index]);
+            }
+        }
+
+        $start = (pow($numElements, 2) * ($index - 1)) + ($numElements * ($page - 1))  ;
         $crypto = array_slice($crypto, $start, $numElements);
         $crypto = array_map(function($currency) {
             $object = new \stdClass;

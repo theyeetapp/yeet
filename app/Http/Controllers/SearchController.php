@@ -19,13 +19,14 @@ class SearchController extends Controller
     public function show(Request $request)
     {
         $index = $request->index ?? 1;
+        $index = (int)$index;
         $this->symbol = strtolower($request->symbol);
 
         if(!$request->page) {
             $page = 1;
         }
         else if((int)$request->page > 16) {
-            $page = 1;
+            return redirect()->route('search', ['symbol' => $this->symbol, 'index' => $index]);
         }
         else {
             $page = (int)$request->page;
@@ -39,9 +40,23 @@ class SearchController extends Controller
         });
         
         $total = count($results);
-        $maxIndex = ceil($total / 225);
         $numElements = config('app.elements_per_page');
-        $start = (225 * ($index - 1)) + ($numElements * ($page - 1));
+        $maxIndex = (int)ceil($total / pow($numElements, 2));
+
+        if($index > $maxIndex && ($maxIndex !== 0)) {
+            return redirect()->route('search', ['symbol' => $this->symbol]);
+        }
+ 
+        if($index === $maxIndex && ($maxIndex !== 0)) {
+            $rem = $total - ($index - 1) * pow($numElements, 2);
+            $remPages = ceil($rem / $numElements);
+           
+            if($page > $remPages) {
+                return redirect()->route('search', ['symbol' => $this->symbol, 'index' => $index]);
+            }
+        }
+
+        $start = (pow($numElements, 2) * ($index - 1)) + ($numElements * ($page - 1));
         $results = array_slice($results, $start, $numElements);
 
         $subscribedSymbols = Auth::user()->symbols();

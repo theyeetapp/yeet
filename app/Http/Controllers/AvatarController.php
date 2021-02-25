@@ -6,6 +6,7 @@ use Cloudinary\Api\Upload\UploadApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Avatar;
+use Exception;
 
 class AvatarController extends Controller
 {
@@ -14,9 +15,15 @@ class AvatarController extends Controller
         $request->validate([
             'avatar' => ['required','mimes:jpeg,jpg,png','between:1,7000']
         ]);
-
+        
         $avatar = $request->avatar->getRealPath();
-        $response = (new UploadApi())->upload($avatar, array('folder' => 'yeet'));
+        try {
+            $response = (new UploadApi())->upload($avatar, array('folder' => 'yeet'));
+        }
+        catch(Exception $e) {
+            return back()->with('error', 'an error occured');
+        }
+
         $avatarUrl = $response['secure_url'];
         $newPublicId = $response['public_id'];
         $currentAvatar = Avatar::firstWhere('user_id', Auth::id());
