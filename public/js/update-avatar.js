@@ -3,7 +3,6 @@
 $(document).ready(function() {
     
     const avatarFormParent = $('.avatar-form-parent');
-    const avatarForm = avatarFormParent.find('form');
     const fileInput = avatarFormParent.find('input');
     const changeAvatar = $('.change-avatar');
     const avatar = $('.avatar');

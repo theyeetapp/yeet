@@ -17,7 +17,7 @@
                 <div class='text-md pr-10 mb-5'>
                     financial market monitoring made simple. <p class='m-0 hidden sm:inline'>easily keep track of your stock and crypto-currency portfolios</p>
                 </div>
-                <div class='flex sm:ml-2 bsm:ml-0'>
+                <div class='flex bsm:ml-2'>
                     <a href='{{ route("signup") }}' class='bg-yeet-light-blue text-white pt-3 pb-4 px-6 text-md mr-4' style='width:fit-content; background:#3D518C'>signup</a>
                     <a href='{{ route("login") }}' class='transition-colors ease-in duration-300 py-3 px-6 text-white text-md' style='width:fit-content'>login</a>
                 </div>
@@ -26,17 +26,17 @@
                 <img src='/images/home/hero.jpg' class='object-cover absolute top-0 left-0 w-full h-full'>
             </div>
         </div>
-        <div class='sm:pt-20 px-6 sm:px-16 md:px-24 lg:px-64'>
+        <div class='sm:pt-16 lg:pt-20 px-6 sm:px-16 md:px-24 lg:px-64'>
             <div class='flex flex-col-reverse bmd:grid bmd:grid-cols-12 col-gap-5 px-1 sm:px-10 py-16 sm:py-10 bmd:p-16 bg-white sm:shadow-md'>
                 <div class='w-full bmd:col-span-6 flex flex-col justify-center lowercase bmd:pr-5'>
-                    <p class='m-0 mb-4 bmd:mb-5 text-lg text-center bmd:text-left font-semibold'>What is Yeet and what can it do for you</p>
+                    <p class='m-0 mb-2 bmd:mb-3 lg:mb-5 text-lg text-center bmd:text-left font-semibold'>What is Yeet and what can it do for you</p>
                     <p class='m-0 text-base leading-7 text-justify'>Yeet is the ultimate tracking tool for your favorite stocks and crypto. with 
                     over 2000 stocks and 3000 crypto currencies available always be aware of the current state of your investment or stocks portfolio.
                     With Yeet, there is simply no need to be checking out stocks or crypto currencies you are interested in by yourself every day. Instead,
                     have Yeet do that for you. Yeet will deliver the current share price of your favorite stocks and crypto
                     every night. Is that convenience or what?</p>
                 </div>
-                <div class='hidden sm:block w-full bmd:col-span-6 mb-6 bmd:mb-0 bmd:ml-2'>
+                <div class='hidden sm:block w-full bmd:col-span-6 mb-8 bmd:mb-0 bmd:ml-2'>
                     <img src='/images/home/description.jpg' class='services-image object-cover w-full'>
                 </div>
             </div>

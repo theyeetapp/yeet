@@ -39,7 +39,7 @@
                     <li class='mb-5 text-sm'>actions</li>
                     <li class='relative flex flex-row items-center mb-4 xs:mb-8' style='left:1px'>
                         <i class='relative fa fa-robot mr-4' style='left:-2px'></i>
-                        <a href='https://t.me/theyeetbot' target='_blank' class='m-0 text-sm change-avatar cursor-pointer'>yeetbot</a>
+                        <a href='https://t.me/theyeetbot' target='_blank' class='m-0 text-sm cursor-pointer'>yeetbot</a>
                     </li>
                     <li class='relative flex flex-row items-center mb-4 xs:mb-8' style='left:1px'>
                         <i class='fa fa-image mr-5'></i>
