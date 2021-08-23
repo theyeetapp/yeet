@@ -105,14 +105,14 @@ class SearchController extends Controller
 
         $crypto = json_decode($string, true)['crypto'];
         $crypto = array_filter($crypto, function($currency) {
-            if(strtolower(substr(array_keys($currency)[0], 0, strlen($this->symbol))) === $this->symbol) {
+            if(strtolower(substr($currency['symbol'], 0, strlen($this->symbol))) === $this->symbol) {
                 return $currency;
             }
         });
         $crypto = array_map(function($currency) {
             $object = new \stdClass;
-            $object->symbol = array_keys($currency)[0];
-            $object->company = array_values($currency)[0];
+            $object->symbol = $currency['symbol'];
+            $object->company = $currency['id'];
             $object->type = 'crypto';
             return $object;
         }, $crypto);

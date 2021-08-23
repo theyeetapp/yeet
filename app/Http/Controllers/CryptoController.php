@@ -55,8 +55,8 @@ class CryptoController extends Controller
         $crypto = array_slice($crypto, $start, $numElements);
         $crypto = array_map(function($currency) {
             $object = new \stdClass;
-            $object->symbol = array_keys($currency)[0];
-            $object->company = array_values($currency)[0];
+            $object->symbol = $currency['symbol'];
+            $object->company = $currency['id'];
             return $object;
         }, $crypto);
 
