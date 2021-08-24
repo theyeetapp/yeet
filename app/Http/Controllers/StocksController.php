@@ -52,15 +52,15 @@ class StocksController extends Controller
                return redirect()->route('stocks', ['index' => $index]);
            }
        }
-
+ 
        $start = (pow($numElements, 2) * ($index - 1)) + ($numElements * ($page - 1));
        $stocks = array_slice($stocks, $start, $numElements);
 
        $stockSymbols = Auth::user()->symbols('stock'); 
-
-       $symbols = array_map(function($stock) {
-        return $stock['name'];
-       }, $stockSymbols);
+       $symbols = [];
+       foreach($stockSymbols as $symbol) {
+           $symbols[$symbol['company']] = $symbol['name'];
+       }
 
        return view('stocks')
        ->with('title', 'Stocks')

@@ -8,7 +8,8 @@
             @foreach($subscriptions as $subscription)
                 <div class='col-span-12 md:col-span-4 bg-white flex flex-col mb-5 p-5 shadow'>
                     <p class='m-0 mb-3 mr-3 symbol'>{{ $subscription->symbol->name }}</p> 
-                    <p class='m-0 mb-3 text-sm name'>{{  strlen($subscription->symbol->company) > 40 ? substr($subscription->symbol->company, 0, 37) . '...' : $subscription->symbol->company }}</p>
+                    <p class='m-0 mb-3 text-sm'>{{  strlen($subscription->symbol->company) > 40 ? substr($subscription->symbol->company, 0, 37) . '...' : $subscription->symbol->company }}</p>
+                    <p class='hidden name'>{{ $subscription->symbol->company }}</p>
                     <div class='flex flex-row justify-between items-center'>
                         <p class='m-0 cursor-pointer text-sm action action-unsubscribe'>
                             unsubscribe

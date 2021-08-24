@@ -61,10 +61,10 @@ class CryptoController extends Controller
         }, $crypto);
 
         $cryptoSymbols = Auth::user()->symbols('crypto'); 
-
-        $symbols = array_map(function($crypto) {
-            return $crypto['name'];
-        }, $cryptoSymbols);
+        $symbols = [];
+        foreach($cryptoSymbols as $symbol) {
+            $symbols[$symbol['company']] = $symbol['name'];
+        }
 
         return view('crypto')
         ->with('title', 'Crypto')

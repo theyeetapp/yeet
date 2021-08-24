@@ -108,15 +108,10 @@
     <script>
         const initialSubscriptions = @json($type === "all" ? $symbols : $subscriptions);
         const subscriptions = @json($type === "all" ? $symbols : $subscriptions);
-        const unsubscriptions = [];
+        const unsubscriptions = {};
         const updateSubscriptions = $('.update-subscriptions');
-        const companies = {};
         const types = {};
         const actions = $('.action');
-
-        actions.click(function() {
-            actionClick($(this));
-        })
 
         const actionClick = action => {
 
@@ -126,25 +121,21 @@
             const type = action.parent().parent().find('.type').text();
 
             if(action.hasClass('action-subscribe')) {
-                subscriptions.push(symbol);
-                companies[symbol] = name;
-                types[symbol] = type;
-                const index = unsubscriptions.findIndex(unsubscription => unsubscription === symbol);
-                if(index !== -1) {
-                    unsubscriptions.splice(index, 1);
+                subscriptions[name] = symbol;
+                types[name] = type;
+                if(unsubscriptions[name]) {
+                    delete unsubscriptions[name];
                 }
                 action.removeClass('action-subscribe').addClass('action-unsubscribe');
                 action.text('unsubscribe');
                 check.addClass('fa-check-circle');
             }
             else {
-                const index = subscriptions.findIndex(subscription => subscription === symbol);
-                subscriptions.splice(index, 1);
-                delete companies[symbol];
-                delete types[symbol];
-                if(initialSubscriptions.includes(symbol)) {
-                    if(!unsubscriptions.includes(symbol)) {
-                        unsubscriptions.push(symbol);
+                delete subscriptions[name];
+                delete types[name];
+                if(initialSubscriptions[name]) {
+                    if(!unsubscriptions[name]) {
+                        unsubscriptions[name] = symbol;
                     }
                 }
                 action.removeClass('action-unsubscribe').addClass('action-subscribe');
@@ -159,16 +150,15 @@
         const toggleUpdate = () => {
 
             let active = false;
-
-            if(initialSubscriptions.length > 0 && subscriptions.length === 0) {
+            if(Object.keys(initialSubscriptions).length > 0 && Object.keys(subscriptions).length === 0) {
                 active = true;
             }
-            if(unsubscriptions.length > 0) {
+            else if(Object.keys(unsubscriptions).length > 0) {
                 active = true;
             }
             else {
-                subscriptions.forEach(subscription => {
-                    if(!initialSubscriptions.includes(subscription)) {
+                Object.keys(subscriptions).forEach(comapany => {
+                    if(!Object.keys(initialSubscriptions).includes(comapany)) {
                         active = true;
                     }
                 })
@@ -180,24 +170,24 @@
         const updateInputs = () => {
             const subscriptionsInput = $('.subscription-symbols');
             const unsubscriptionsInput = $('.unsubscription-symbols');
-            const companiesInput = $('.companies');
             const typesInput = $('.types');
             let subscriptionsText = '';
             let unsubscriptionsText = '';
-            const subscriptions_ = subscriptions.filter(subscription => !initialSubscriptions.includes(subscription));
-
-            subscriptions_.forEach(subscription => {
-                subscriptionsText += subscription + '|';
-            })
-            
-            unsubscriptions.forEach(unsubscription => {
-                unsubscriptionsText += unsubscription + '|';
+            const initialSubscriptionCompanies = Object.keys(initialSubscriptions);
+            const subscriptions_ = {};
+            Object.keys(subscriptions)
+            .filter(company => !initialSubscriptionCompanies.includes(company))
+            .forEach(company => {
+                subscriptions_[company] = subscriptions[company];
             })
 
-            subscriptionsInput.val(subscriptionsText);
-            unsubscriptionsInput.val(unsubscriptionsText);
-            companiesInput.val(JSON.stringify(companies));
+            subscriptionsInput.val(JSON.stringify(subscriptions_));
+            unsubscriptionsInput.val(JSON.stringify(unsubscriptions));
             typesInput.val(JSON.stringify(types));
         }
+
+        actions.click(function() {
+            actionClick($(this));
+        })
     </script>
 @endsection

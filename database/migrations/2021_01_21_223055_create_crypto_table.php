@@ -15,7 +15,7 @@ class CreateCryptoTable extends Migration
     {
         Schema::create('crypto', function (Blueprint $table) {
             $table->id();
-            $table->char('symbol', 3)->unique();
+            $table->string('symbol')->unique();
             $table->timestamps();
         });
     }

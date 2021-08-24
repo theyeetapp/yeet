@@ -62,15 +62,13 @@ class User extends Authenticatable
         ->toArray();
 
         if($type) {
-            return Symbol::select('name')
-            ->where('type', $type)
+            return Symbol::where('type', $type)
             ->whereIn('id', $symbolIds)
             ->get()
             ->toArray();
         }
     
-        return Symbol::select('name')
-        ->whereIn('id', $symbolIds)
+        return Symbol::whereIn('id', $symbolIds)
         ->get()
         ->toArray();
     }

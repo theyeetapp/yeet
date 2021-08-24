@@ -7,15 +7,19 @@
         @foreach($stocks as $stock)
             <div class='col-span-12 md:col-span-4 bg-white flex flex-col mb-5 p-5 shadow'>
                 <p class='m-0 mb-3 symbol'>{{ $stock->symbol }}</p>
-                <p class='m-0 mb-3 text-sm name'>{{  strlen($stock->company) > 40 ? substr($stock->company, 0, 37) . '...' : $stock->company }}</p>
+                <p class='m-0 mb-3 text-sm'>{{  strlen($stock->company) > 40 ? substr($stock->company, 0, 37) . '...' : $stock->company }}</p>
+                <p class='hidden name'>{{ $stock->company }}</p>
                 <p class='m-0 text-sm hidden type'>{{ $type }}</p>
                 <div class='flex flex-row justify-between items-center'>
+                    @php
+                        $isSubscribed = in_array($stock->company, array_keys($subscriptions)) * in_array($stock->symbol, array_values($subscriptions))
+                    @endphp
                     <p class='m-0 cursor-pointer text-sm action 
-                    {{ in_array($stock->symbol, $subscriptions) ? "action-unsubscribe" : "action-subscribe" }}'>
-                        {{ in_array($stock->symbol, $subscriptions) ? 'unsubscribe' : 'subscribe' }}
+                    {{ $isSubscribed ? "action-unsubscribe" : "action-subscribe" }}'>
+                        {{ $isSubscribed ? "unsubscribe" : "subscribe" }}
                     </p>
-                    
-                    @if(in_array($stock->symbol, $subscriptions))
+
+                    @if($isSubscribed)
                         <i class='fa fa-check-circle' style='color:#537A5A'></i>
                     @else 
                         <i class='fa' style='color:#537A5A'></i>

@@ -53,9 +53,10 @@ class SubscriptionsController extends Controller
         $subscriptions = $user->subscriptions($start, $numElements);
 
         $subscribedSymbols = $user->symbols();
-        $symbols = array_map(function($stock) {
-        return $stock['name'];
-        }, $subscribedSymbols);
+        $symbols = [];
+        foreach($subscribedSymbols as $symbol) {
+            $symbols[$symbol['company']] = $symbol['name'];
+        }
 
         return view('subscriptions')
         ->with('title', 'Subscriptions')
@@ -72,17 +73,9 @@ class SubscriptionsController extends Controller
     }
 
     public function update($type) {
-        $subscriptions = explode('|', $this->request->subscriptions);
-        $unsubscriptions = explode('|', $this->request->unsubscriptions);
-        $this->companies = json_decode($this->request->companies, true);
+        $subscriptions = json_decode($this->request->subscriptions, true);
+        $unsubscriptions = json_decode($this->request->unsubscriptions, true);
         $this->types = json_decode($this->request->types, true);
-
-        $subscriptions = array_filter($subscriptions, function($subscription) {
-            return $subscription !== '';
-        });
-        $unsubscriptions = array_filter($unsubscriptions, function($unsubscription) {
-            return $unsubscription !== '';
-        });
 
         if(count($subscriptions) > 0) {
             $this->subscribe($subscriptions, $type);
@@ -98,16 +91,17 @@ class SubscriptionsController extends Controller
 
     public function subscribe($subscriptions, $type) {
 
-        foreach($subscriptions as $subscription) {
-            $typeValue = $type === 'search' ? $this->types[$subscription] : $type;
-            $symbol = Symbol::firstOrCreate(['name' => $subscription], ['company' => $this->companies[$subscription], 'type'=> $typeValue]);
+        foreach($subscriptions as $company => $symbol) {
+            $typeValue = $type === 'search' ? $this->types[$company] : $type;
+            $symbol = Symbol::firstOrCreate(['name' => $symbol, 'company' => $company], ['type'=> $typeValue]);
             Subscription::create(['user_id' => Auth::id(), 'symbol_id' => $symbol->id]);
         }
     }
 
     public function unsubscribe($unsubscriptions) {
+       $companies = array_keys($unsubscriptions);
        $symbolIds = Symbol::select('id')
-       ->whereIn('name', $unsubscriptions)
+       ->whereIn('company', $companies)
        ->get();
        Subscription::where('user_id', Auth::id())
        ->whereIn('symbol_id', $symbolIds)

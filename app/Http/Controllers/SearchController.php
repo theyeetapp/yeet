@@ -60,9 +60,10 @@ class SearchController extends Controller
         $results = array_slice($results, $start, $numElements);
 
         $subscribedSymbols = Auth::user()->symbols();
-        $symbols = array_map(function($symbol) {
-            return $symbol['name'];
-        }, $subscribedSymbols);
+        $symbols = [];
+        foreach($subscribedSymbols as $symbol) {
+            $symbols[$symbol['company']] = $symbol['name'];
+        }
 
         return view('search')
         ->with('title', $request->symbol. ' - Search Results')
