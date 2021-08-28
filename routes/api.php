@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/bot/authenticate', [BotController::class, 'authenticate']);
+
+Route::post('/users/{user}/telegram/update', [BotController::class, 'updateTelegram']);
