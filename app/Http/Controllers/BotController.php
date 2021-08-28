@@ -9,6 +9,8 @@ use App\Events\BotAuthentication;
 
 class BotController extends Controller
 {
+    public $types = ['all', 'crypto', 'stock'];
+
     public function authenticate(Request $request)
     {
         $email = $request->email;
@@ -38,6 +40,20 @@ class BotController extends Controller
 
         return [
             'user' => $user
+        ];
+    }
+
+    public function getSymbols(User $user, $type='all')
+    {
+        if(!in_array($type, $this->types)) {
+            return [
+                'message' => 'unsupported symbol type',
+                'errorId' => 'UnsupportedSymbolType'
+            ];
+        }
+
+        return [
+            'symbols' => $user->symbols($type === 'all' ? null : $type)
         ];
     }
 }

@@ -24,8 +24,8 @@ $(document).ready(() => {
             return true;
         }
 
-        if(name.val().length === 0) {
-            name.after('<p class="m-0 mt-2 text-red text-sm error-name">name is required</p>');
+        if(name.val().length === 0 || name.val().split(' ').length < 2) {
+            name.after('<p class="m-0 mt-2 text-red text-sm error-name">full name is required</p>');
             return false;
         }
 

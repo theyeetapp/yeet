@@ -19,7 +19,7 @@
             <form noValidate class='relative bg-white rounded p-8' action='{{ route("signup") }}' method='POST'>
                 @CSRF
                 <div class='flex flex-col mb-4'>
-                    <label for='name' class='text-gray-800 mb-2'>Name</label>
+                    <label for='name' class='text-gray-800 mb-2'>Full Name</label>
                     <input type='text' id='name' name='name' value='{{ old("name") }}' class='name focus:outline-none p-3 border' placeholder="Full Name" autoFocus>
                 </div>
                 <div class='flex flex-col mb-4'>
