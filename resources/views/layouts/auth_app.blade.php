@@ -95,7 +95,6 @@
             <input type='hidden' name='subscriptions' class='subscription-symbols' value="">
             <input type='hidden' name='unsubscriptions' class='unsubscription-symbols' value="">
             <input type='hidden' name='types' class='types' value="">
-            <input type='hidden' name='companies' class='companies' value="">
             <button type='submit' class='focus:outline-none bg-yeet-blue p-2 md:p-3 text-white'>Update</button>
         </form>
     </div>
