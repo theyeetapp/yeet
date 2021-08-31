@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\BotAuthenticationNotification;
+use App\Notifications\ChangeTelegramAccountNotification;
 
 use App\Models\Avatar;
 use App\Models\Symbol;
@@ -91,5 +92,12 @@ class User extends Authenticatable
         $nameArray = explode(' ', $this->name);
         $name = count($nameArray) > 1 ? $nameArray[count($nameArray) - 1] : $nameArray[0];
         return $this->notify(new BotAuthenticationNotification($name, $code));
+    }
+
+    public function sendChangeTelegramAccountNotification($code)
+    {
+        $nameArray = explode(' ', $this->name);
+        $name = count($nameArray) > 1 ? $nameArray[count($nameArray) - 1] : $nameArray[0];
+        return $this->notify(new ChangeTelegramAccountNotification($name, $code));
     }
 }

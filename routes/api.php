@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BotController;
@@ -21,6 +22,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/bot/authenticate', [BotController::class, 'authenticate']);
 
-Route::post('/users/{user}/telegram', [BotController::class, 'updateTelegram']); 
+Route::post('/bot/update', [BotController::class, 'update']);
 
-Route::get('users/{user}/symbols/{type?}', [BotController::class, 'getSymbols']);
+Route::post('/users/{user}/telegram', [BotController::class, 'updateUser']); 
+
+Route::get('/users/{user}', function(User $user) {
+    return [
+        'user' => $user
+    ];
+});
+
+Route::get('/users/{user}/subscriptions/{type?}', [BotController::class, 'getSubscriptions']);
+
+Route::get('/symbols/{type}', [BotController::class, 'getSymbols']);
