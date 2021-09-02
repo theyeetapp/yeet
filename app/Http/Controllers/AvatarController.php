@@ -18,7 +18,7 @@ class AvatarController extends Controller
         
         $avatar = $request->avatar->getRealPath();
         try {
-            $response = (new UploadApi())->upload($avatar, array('folder' => 'yeet'));
+            $response = (new UploadApi(config("app.cloudinary_url")))->upload($avatar, array('folder' => 'yeet'));
         }
         catch(Exception $e) {
             return back()->with('error', 'an error occured');
