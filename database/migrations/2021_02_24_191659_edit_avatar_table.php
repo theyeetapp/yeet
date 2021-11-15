@@ -26,7 +26,7 @@ class EditAvatarTable extends Migration
     public function down()
     {
         Schema::table('avatars', function (Blueprint $table) {
-            //
+            $table->dropColumn('url');
         });
     }
 }
