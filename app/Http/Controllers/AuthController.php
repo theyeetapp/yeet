@@ -22,11 +22,11 @@ class AuthController extends Controller
 
         if(Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
-            $request->session()->flash('message', 'logged in successfully');
+            $request->session()->flash('message', 'Logged in successfully');
             return redirect()->intended('subscriptions');
         }
 
-        $request->session()->flash('error', 'incorrect credentials');
+        $request->session()->flash('error', 'Incorrect credentials');
         return back()->withInput();
     }
 
@@ -43,7 +43,7 @@ class AuthController extends Controller
             $user = User::firstWhere('id', $googleUser->user_id);
             Auth::login($user, true);
             $request->session()->regenerate();
-            $request->session()->flash('message', 'logged in successfully');
+            $request->session()->flash('message', 'Logged in successfully');
             return redirect()->route('subscriptions');
         }
 
@@ -52,7 +52,7 @@ class AuthController extends Controller
         if($user) {
             Auth::login($user, true);
             $request->session()->regenerate();
-            $request->session()->flash('message', 'logged in successfully');
+            $request->session()->flash('message', 'Logged in successfully');
             return redirect()->route('subscriptions');
         }
 
@@ -62,6 +62,10 @@ class AuthController extends Controller
             'password' => Hash::make(rand(1, 1000)),
             'avatar' => $authUser->getAvatar()
         ]);
+
+        $user->avatar()->create([
+            'url' => $authUser->getAvatar(),
+        ]);
         
         GoogleUser::create([
             'google_id' => $googleId,
@@ -70,7 +74,7 @@ class AuthController extends Controller
 
         Auth::login($user, true);
         $request->session()->regenerate();
-        $request->session()->flash('message', 'logged in successfully');
+        $request->session()->flash('message', 'Logged in successfully');
         return redirect()->route('subscriptions');
     }   
 
@@ -79,7 +83,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        $request->session()->flash('message', 'logged out successfully');
+        $request->session()->flash('message', 'Logged out successfully');
         return redirect()->route('login');
     }
 }

@@ -64,7 +64,7 @@
                 </ul>
             </div>
             <div class='pt-4 flex flex-row lg:justify-center items-center px-8 sm:px-12 md:px-16 lg:px-8'>
-                <img src='{{Auth::user()->avatar ? Auth::user()->avatar->url : "/images/general/defaultAvatar.png"}}' class='avatar object-cover w-10 h-10 mr-3 rounded-full' />
+                <img src='{{Auth::user()->avatar ? Auth::user()->avatar->url : asset("images/general/DefaultAvatar.png")}}' class='avatar object-cover w-10 h-10 mr-3 rounded-full' />
                 <p class='m-0 text-sm'>{{ Auth::user()->name }}</p>
             </div>      
         </div>

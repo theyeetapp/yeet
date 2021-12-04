@@ -15,6 +15,7 @@ class EditAvatarTable extends Migration
     {
         Schema::table('avatars', function (Blueprint $table) {
             $table->string('url')->after('id');
+            $table->string('public_id')->nullable()->change();
         });
     }
 
@@ -27,6 +28,7 @@ class EditAvatarTable extends Migration
     {
         Schema::table('avatars', function (Blueprint $table) {
             $table->dropColumn('url');
+            $table->string('public_id')->nullable(false)->change();
         });
     }
 }

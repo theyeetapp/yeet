@@ -36,7 +36,9 @@ class AvatarController extends Controller
             ]);
         }
         else {
-            (new UploadApi())->destroy($currentAvatar->public_id);
+            if($currentAvatar->public_id) {
+                (new UploadApi(config("app.cloudinary_url")))->destroy($currentAvatar->public_id);
+            }
             $currentAvatar->url = $avatarUrl;
             $currentAvatar->public_id = $newPublicId;
             $currentAvatar->save();

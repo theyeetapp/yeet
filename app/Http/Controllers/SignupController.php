@@ -30,7 +30,7 @@ class SignupController extends Controller
         $user = User::firstWhere('email', $email);
 
         if($user) {
-            $request->session()->flash('error', 'user with email exists');
+            $request->session()->flash('error', 'User with email exists');
             return back()->withInput();
         }
 
@@ -44,7 +44,7 @@ class SignupController extends Controller
         ]);
         
         Mail::to($user)->send(new VerifyEmail($user));
-        $request->session()->flash('message', 'continue at your email');
+        $request->session()->flash('message', 'Continue at your email');
         return back();
     }
 
@@ -53,7 +53,7 @@ class SignupController extends Controller
         $user = User::firstWhere('activation_token', $token);
         
         if(!$user) {
-            $request->session()->flash('error', 'email verification failed');
+            $request->session()->flash('error', 'Email verification failed');
             return redirect()->route('signup');
         }
 
@@ -61,7 +61,7 @@ class SignupController extends Controller
         $user->save();
         Auth::login($user);
         $request->session()->regenerate();
-        $request->session()->flash('message', 'email verified successfully');
+        $request->session()->flash('message', 'Email verified successfully');
         return redirect()->route('subscriptions');
     }
 }
