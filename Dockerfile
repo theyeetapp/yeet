@@ -1,5 +1,7 @@
 FROM php:7.4-fpm
 
+WORKDIR /var/www/html
+
 RUN apt-get update && apt-get install -y git curl libzip-dev
 
 # Install PHP dependencies

@@ -29,7 +29,7 @@
 			<tr>
 				<td>
 					<table width='600px' class='table__main' align="center" cellpadding="0" cellspacing="0" bgcolor="white"
-					style='padding:30px;'>
+					style='padding:30px;line-height: 1.7;'>
 						<tr>
 							<td align='center'>
                                 <img width='40px' height='40px' src="{{ $message->embed(config('app.root').'/public/images/general/favicon.png') }}" />
@@ -42,7 +42,7 @@
 						</tr>
 						<tr>
 							<td>
-								<div style='line-height: 1.7; text-align:justify;'>
+								<div>
 									Hey there {{ explode(' ', $user->name, 2)[1] }}. A password reset request was just made on your Yeet account. Click this link
                                     to continue the process. The link expires in 30 minutes.
 								</div>

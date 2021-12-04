@@ -29,7 +29,7 @@
 			<tr>
 				<td>
 					<table width='600px' class='table__main' align="center" cellpadding="0" cellspacing="0" bgcolor="white"
-					style='padding:30px;'>
+					style='padding:30px; line-height: 1.7;'>
 						<tr>
 							<td align='center'>
                                 <img width='40px' height='40px' src="{{ $message->embed(config('app.root').'/public/images/general/favicon.png') }}" />
@@ -42,7 +42,7 @@
 						</tr>
 						<tr>
 							<td>
-								<div style='line-height: 1.7; text-align:justify;'>
+								<div>
 									Hello {{ explode(' ', $user->name, 2)[1] }}. Welcome once more to Yeet, your trusted financial market tracker. One more step to complete
 									your signup. Click the link below to verify your email.
 								</div>

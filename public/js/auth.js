@@ -25,7 +25,7 @@ $(document).ready(() => {
         }
 
         if(name.val().length === 0 || name.val().split(' ').length < 2) {
-            name.after('<p class="m-0 mt-2 text-red text-sm error-name">full name is required</p>');
+            name.after('<p class="m-0 mt-2 text-red text-sm error-name">Full name is required</p>');
             return false;
         }
 
@@ -43,7 +43,7 @@ $(document).ready(() => {
         const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         
         if(!re.test(email.val())) {
-            email.after('<p class="m-0 mt-2 text-red text-sm error-email">enter a valid email</p>');
+            email.after('<p class="m-0 mt-2 text-red text-sm error-email">Enter a valid email</p>');
             return false;
         }
 
@@ -55,7 +55,7 @@ $(document).ready(() => {
         $('.error-password').remove();
 
         if(password.val().length < 8) {
-            password.after('<p class="m-0 mt-2 text-red text-sm error-password">at least 8 characters required</p>');
+            password.after('<p class="m-0 mt-2 text-red text-sm error-password">At least 8 characters are required</p>');
             return false;
         }
 

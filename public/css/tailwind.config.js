@@ -15,6 +15,7 @@ module.exports = {
           colors:{
               'yeet-blue':'#25326E',
               'yeet-light-blue':'#1D439B',
+              'yeet-medium-blue':'#3D518C',
               'steel-blue':"#B4C5E4",
               'light-gray':'#FBFBFB',
               'red':'#FF0000'
