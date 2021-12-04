@@ -26,7 +26,7 @@ class PasswordResetsController extends Controller
         $user = User::firstWhere('email', $email);
 
         if(!$user) {
-            return back()->with('message', 'continue at your email');
+            return back()->with('message', 'Continue at your email');
         }
 
         date_default_timezone_set('Africa/Lagos');
@@ -40,21 +40,21 @@ class PasswordResetsController extends Controller
         ]);
 
         Mail::to($user)->send(new ResetMail($user, $token));
-        return back()->with('message', 'continue at your email');
+        return back()->with('message', 'Continue at your email');
     }
 
     public function show($token) {
         $reset = PasswordReset::firstWhere('token', $token);
 
         if(!$reset) {
-            $this->request->session()->flash('error', 'invalid password reset token');
+            $this->request->session()->flash('error', 'Invalid password reset token');
             return redirect()->route('login');
         }
 
         date_default_timezone_set('Africa/Lagos');
 
         if(time() > $reset->expires_in) {
-            $this->request->session()->flash('error', 'expired password reset token');
+            $this->request->session()->flash('error', 'Expired password reset token');
             return redirect()->route('login');
         }
 
@@ -74,7 +74,7 @@ class PasswordResetsController extends Controller
         $user->save();
 
         PasswordReset::where('user_id', $user->id)->delete();
-        $this->request->session()->flash('message', 'password changed successfully');
+        $this->request->session()->flash('message', 'Password changed successfully');
         return redirect()->route('login');
     }
 }

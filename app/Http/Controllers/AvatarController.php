@@ -44,6 +44,6 @@ class AvatarController extends Controller
             $currentAvatar->save();
         }
 
-        return back()->with('message', 'avatar updated successfully');
+        return back()->with('message', 'Avatar updated successfully');
     }
 }
