@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class='hidden lg:block col-span-7 relative'>
-                <img src='/images/home/hero.jpg' class='object-cover absolute top-0 left-0 w-full h-full'>
+                <img src='https://res.cloudinary.com/olamileke/image/upload/v1671132543/yeet/assets/home-page/hero_foib3g.jpg' class='object-cover absolute top-0 left-0 w-full h-full'>
             </div>
         </div>
         <div class='sm:pt-16 lg:pt-20 px-6 sm:px-16 md:px-24 lg:px-64'>
@@ -37,7 +37,7 @@
                     every night. Is that convenience or what?</p>
                 </div>
                 <div class='hidden sm:block w-full bmd:col-span-6 mb-8 bmd:mb-0 bmd:ml-2'>
-                    <img src='/images/home/description.jpg' class='services-image object-cover w-full'>
+                    <img src='https://res.cloudinary.com/olamileke/image/upload/v1671132551/yeet/assets/home-page/description_ta1qp5.jpg' class='services-image object-cover w-full'>
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 <a href='https://t.me/theyeetbot' class='bg-yeet-medium-blue py-4 px-6 text-white text-md mr-4' style='width:fit-content;'>YeetBot <i class='ml-2 text-sm fa fa-external-link-alt'></i></a>
             </div>
             <div class='hidden sm:block relative col-span-12 mb-8 bmd:mb-0 bmd:col-start-7 bmd:col-end-12'>
-                <img src='/images/home/bot.jpg' class='w-full object-cover bot-image'>
+                <img src='https://res.cloudinary.com/olamileke/image/upload/v1671132553/yeet/assets/home-page/currency-notes_fkmivu.jpg' class='w-full object-cover bot-image'>
                 <div class='absolute top-0 left-0 w-full h-full' style='background:rgba(0,0,0,0.1)'></div>
             </div>
             <div class='h-full bmd:hidden col-span-12 flex flex-col items-center justify-center'>
@@ -65,7 +65,7 @@
             <div class='col-span-12 md:col-start-2 md:col-end-12'>
                 <div class='w-full flex flex-col lg:flex-row'>
                     <div class='w-full mb-6 bmd:mb-10 lg:mb-0 lg:w-1/2 lg:pr-10'>
-                        <img src='/images/home/bitcoin.jpg' class='object-cover setup-image'>
+                        <img src='https://res.cloudinary.com/olamileke/image/upload/v1671132549/yeet/assets/home-page/currency-roll_jep4uz.jpg' class='object-cover setup-image'>
                     </div>
                     <div class='w-full text-justify sm:text-left lg:w-1/2 lg:pl-10 flex flex-col justify-center'>
                         <div class='mb-4'>

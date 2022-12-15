@@ -34,7 +34,7 @@
         @else 
             <div class='col-span-12 no-items flex flex-row items-center justify-center'>
                 <div class='flex flex-col no-items__content items-center'>
-                    <img src='/images/subscriptions/direction.svg' class='no-items__image mb-8'>
+                    <img src='https://res.cloudinary.com/olamileke/image/upload/v1671133089/yeet/assets/subscriptions/direction_scpfkm.svg' class='no-items__image mb-8'>
                     <p class='m-0 no-items__message text-lg text-center'>No search results for "{{ $searchTerm }}"</p>
                 </div>
             </div>

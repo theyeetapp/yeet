@@ -1,29 +1,22 @@
-
-.auth__container
-{
-    width:400px
+.auth__container {
+    width: 400px;
 }
 
-.auth__container input
-{
-    border-color:rgba(0,0,0,0.14);
-    transition:border-color 500ms ease-in;
+.auth__container input {
+    border-color: rgba(0, 0, 0, 0.14);
+    transition: border-color 500ms ease-in;
 }
 
-.auth__container input:focus
-{
-    border-color:#1D439B;
+.auth__container input:focus {
+    border-color: #1d439b;
 }
 
-@media(max-width:576px)
-{
-    .auth 
-    {
-        padding:15vh 0 10vh 0;
+@media (max-width: 576px) {
+    .auth {
+        padding: 15vh 0 10vh 0;
     }
 
-    .auth__container
-    {
-        width:90%;
+    .auth__container {
+        width: 90%;
     }
 }

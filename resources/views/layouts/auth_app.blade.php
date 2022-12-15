@@ -64,7 +64,7 @@
                 </ul>
             </div>
             <div class='pt-4 flex flex-row lg:justify-center items-center px-8 sm:px-12 md:px-16 lg:px-8'>
-                <img src='{{Auth::user()->avatar ? Auth::user()->avatar->url : asset("images/general/DefaultAvatar.png")}}' class='avatar object-cover w-10 h-10 mr-3 rounded-full' />
+                <img src='{{ Auth::user()->avatar ? Auth::user()->avatar->url : "https://res.cloudinary.com/olamileke/image/upload/v1671135774/yeet/assets/icons/DefaultAvatar_olhkwo.png" }}' class='avatar object-cover w-10 h-10 mr-3 rounded-full' />
                 <p class='m-0 text-sm'>{{ Auth::user()->name }}</p>
             </div>      
         </div>
@@ -76,7 +76,7 @@
                 </div>
                 <form action='{{ route("search") }}' method='POST' class='relative search-form'>
                     @CSRF
-                    <img src='/images/general/search.png' class='absolute top-0 left-0 w-5 h-5 ml-3 mt-3 fa fa-search' style='top:2px; left:2px' />
+                    <img src='https://res.cloudinary.com/olamileke/image/upload/v1671135774/yeet/assets/icons/search_mr95t7.png' class='absolute top-0 left-0 w-5 h-5 ml-3 mt-3 fa fa-search' style='top:2px; left:2px' />
                     <input type='text' name='symbol' value="{{ $searchTerm ?? '' }}" class='transition-all duration-300 ease-out shadow focus:outline-none w-48 py-3 input-search' />
                 </form>
             </div>

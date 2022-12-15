@@ -32,7 +32,7 @@
 					style='padding:30px;line-height: 1.7;'>
 						<tr>
 							<td align='center'>
-                                <img width='40px' height='40px' src="{{ $message->embed(config('app.root').'/public/images/general/favicon.png') }}" />
+                                <img width='40px' height='40px' src="https://res.cloudinary.com/olamileke/image/upload/v1671135774/yeet/assets/icons/favicon_szbais.png" />
                             </td>
 						</tr>
 						<tr>

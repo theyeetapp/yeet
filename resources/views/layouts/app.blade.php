@@ -9,7 +9,7 @@
         content="stocks and crypto tracking made easy"
         />
         <title>@yield('title')</title>
-        <link rel="icon" href="/images/general/favicon.png" />
+        <link rel="icon" href="https://res.cloudinary.com/olamileke/image/upload/v1671135774/yeet/assets/icons/favicon_szbais.png" />
         <link rel='stylesheet' href='/css/styles.css'>
         <link rel='stylesheet' href='/css/notify.css'>
         <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css' rel="stylesheet">
