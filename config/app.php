@@ -175,7 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
-        
+
     ],
 
     'elements_per_page' => env('ELEMENTS_PER_PAGE', 20),

@@ -12,7 +12,8 @@ class PasswordReset extends Model
     protected $table = 'password_resets';
     protected $fillable = ['user_id', 'token', 'expires_in'];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

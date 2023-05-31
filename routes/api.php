@@ -24,9 +24,9 @@ Route::post('/bot/authenticate', [BotController::class, 'authenticate']);
 
 Route::post('/bot/update', [BotController::class, 'update']);
 
-Route::post('/users/{user}/telegram', [BotController::class, 'updateUser']); 
+Route::post('/users/{user}/telegram', [BotController::class, 'updateUser']);
 
-Route::get('/users/{user}', function(User $user) {
+Route::get('/users/{user}', function (User $user) {
     return [
         'user' => $user
     ];

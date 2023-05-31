@@ -13,11 +13,13 @@ class PasswordResetsController extends Controller
 {
     public $request;
 
-    public function __construct(Request $request) {
+    public function __construct(Request $request)
+    {
         $this->request = $request;
     }
 
-    public function sendEmail() {
+    public function sendEmail()
+    {
         $this->request->validate([
             'email' => ['required', 'email'],
         ]);
@@ -25,7 +27,7 @@ class PasswordResetsController extends Controller
         $email = $this->request->email;
         $user = User::firstWhere('email', $email);
 
-        if(!$user) {
+        if (!$user) {
             return back()->with('message', 'Continue at your email');
         }
 
@@ -43,17 +45,18 @@ class PasswordResetsController extends Controller
         return back()->with('message', 'Continue at your email');
     }
 
-    public function show($token) {
+    public function show($token)
+    {
         $reset = PasswordReset::firstWhere('token', $token);
 
-        if(!$reset) {
+        if (!$reset) {
             $this->request->session()->flash('error', 'Invalid password reset token');
             return redirect()->route('login');
         }
 
         date_default_timezone_set('Africa/Lagos');
 
-        if(time() > $reset->expires_in) {
+        if (time() > $reset->expires_in) {
             $this->request->session()->flash('error', 'Expired password reset token');
             return redirect()->route('login');
         }
@@ -62,7 +65,8 @@ class PasswordResetsController extends Controller
         ->with('token', $token);
     }
 
-    public function reset() {
+    public function reset()
+    {
         $this->request->validate([
             'password' => ['required', 'min:8'],
             'token' => ['required', 'min:50']

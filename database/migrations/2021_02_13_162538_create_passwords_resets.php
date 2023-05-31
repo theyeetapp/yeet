@@ -19,7 +19,7 @@ class CreatePasswordsResets extends Migration
             $table->string('token');
             $table->integer('expires_in');
             $table->timestamps();
-            
+
             $table->foreign('user_id')
             ->references('id')
             ->on('users')

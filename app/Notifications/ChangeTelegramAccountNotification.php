@@ -45,7 +45,7 @@ class ChangeTelegramAccountNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
                 ->subject('Update Your Telegram Account')
                 ->view('mail.change_telegram_account', ['name' => $this->name, 'code' => $this->code]);
     }

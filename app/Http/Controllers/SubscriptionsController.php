@@ -12,15 +12,17 @@ class SubscriptionsController extends Controller
     protected $request;
     protected $companies;
 
-    public function __construct(Request $request) {
+    public function __construct(Request $request)
+    {
         $this->request = $request;
     }
 
-    public function show() {
+    public function show()
+    {
         $index = $this->request->index ?? 1;
         $index = (int)$index;
 
-        if(!$this->request->page) {
+        if (!$this->request->page) {
             $page = 1;
         }
         // else if((int)$this->request->page > 16) {
@@ -35,26 +37,26 @@ class SubscriptionsController extends Controller
         $numElements = config('app.elements_per_page');
         $maxIndex = (int)ceil($total / pow($numElements, 2));
 
-        if($index > $maxIndex && ($maxIndex !== 0)) {
+        if ($index > $maxIndex && ($maxIndex !== 0)) {
             return redirect()->route('subscriptions');
         }
- 
-        if($index === $maxIndex && ($maxIndex !== 0)) {
+
+        if ($index === $maxIndex && ($maxIndex !== 0)) {
             $rem = $total - ($index - 1) * pow($numElements, 2);
             $remPages = ceil($rem / $numElements);
-           
-            if($page > $remPages) {
+
+            if ($page > $remPages) {
                 return redirect()->route('subscriptions', ['index' => $index]);
             }
         }
 
         $start = (pow($numElements, 2) * ($index - 1)) + ($numElements * ($page - 1));
-        $user = Auth::user(); 
+        $user = Auth::user();
         $subscriptions = $user->subscriptions($start, $numElements);
 
         $subscribedSymbols = $user->symbols();
         $symbols = [];
-        foreach($subscribedSymbols as $symbol) {
+        foreach ($subscribedSymbols as $symbol) {
             $symbols[$symbol['company']] = $symbol['name'];
         }
 
@@ -72,16 +74,17 @@ class SubscriptionsController extends Controller
         ->with('symbols', $symbols);
     }
 
-    public function update($type) {
+    public function update($type)
+    {
         $subscriptions = json_decode($this->request->subscriptions, true);
         $unsubscriptions = json_decode($this->request->unsubscriptions, true);
         $this->types = json_decode($this->request->types, true);
 
-        if(count($subscriptions) > 0) {
+        if (count($subscriptions) > 0) {
             $this->subscribe($subscriptions, $type);
         }
 
-        if(count($unsubscriptions) > 0) {
+        if (count($unsubscriptions) > 0) {
             $this->unsubscribe($unsubscriptions);
         }
 
@@ -89,22 +92,23 @@ class SubscriptionsController extends Controller
         return back();
     }
 
-    public function subscribe($subscriptions, $type) {
-
-        foreach($subscriptions as $company => $symbol) {
+    public function subscribe($subscriptions, $type)
+    {
+        foreach ($subscriptions as $company => $symbol) {
             $typeValue = $type === 'search' ? $this->types[$company] : $type;
             $symbol = Symbol::firstOrCreate(['name' => $symbol, 'company' => $company], ['type'=> $typeValue]);
             Subscription::create(['user_id' => Auth::id(), 'symbol_id' => $symbol->id]);
         }
     }
 
-    public function unsubscribe($unsubscriptions) {
-       $companies = array_keys($unsubscriptions);
-       $symbolIds = Symbol::select('id')
-       ->whereIn('company', $companies)
-       ->get();
-       Subscription::where('user_id', Auth::id())
-       ->whereIn('symbol_id', $symbolIds)
-       ->delete();
+    public function unsubscribe($unsubscriptions)
+    {
+        $companies = array_keys($unsubscriptions);
+        $symbolIds = Symbol::select('id')
+        ->whereIn('company', $companies)
+        ->get();
+        Subscription::where('user_id', Auth::id())
+        ->whereIn('symbol_id', $symbolIds)
+        ->delete();
     }
 }

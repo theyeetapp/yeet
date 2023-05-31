@@ -1,15 +1,15 @@
 <?php
 
     namespace App\Providers;
-    
+
     use Illuminate\Support\ServiceProvider;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\View as ViewFacade;
     use Illuminate\View\View;
 
-    class ViewServiceProvider extends ServiceProvider 
+    class ViewServiceProvider extends ServiceProvider
     {
-        public function register() 
+        public function register()
         {
             //
         }
@@ -22,4 +22,3 @@
             // });
         }
     }
-?>

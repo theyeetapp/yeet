@@ -45,7 +45,7 @@ class BotAuthenticationNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->subject('Verify your Telegram')
                     ->view('mail.verify_bot', ['name' => $this->name, 'code' => $this->code]);
     }

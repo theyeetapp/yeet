@@ -19,14 +19,12 @@ class CryptoController extends Controller
     {
         $index = $request->index ?? 1;
         $index = (int)$index;
-        
-        if(!$request->page) {
+
+        if (!$request->page) {
             $page = 1;
-        }
-        else if ((int)$request->page > 16) {
+        } elseif ((int)$request->page > 16) {
             return redirect()->route('crypto', ['index' => $index]);
-        }
-        else {
+        } else {
             $page = (int)$request->page;
         }
 
@@ -38,31 +36,31 @@ class CryptoController extends Controller
         $numElements = config('app.elements_per_page');
         $maxIndex = (int)ceil($total / pow($numElements, 2));
 
-        if($index > $maxIndex) {
+        if ($index > $maxIndex) {
             return redirect()->route('crypto');
         }
 
-        if($index === $maxIndex) {
+        if ($index === $maxIndex) {
             $rem = $total - ($index - 1) * pow($numElements, 2);
             $remPages = ceil($rem / $numElements);
 
-            if($page > $remPages) {
+            if ($page > $remPages) {
                 return redirect()->route('crypto', ['index' => $index]);
             }
         }
 
         $start = (pow($numElements, 2) * ($index - 1)) + ($numElements * ($page - 1))  ;
         $crypto = array_slice($crypto, $start, $numElements);
-        $crypto = array_map(function($currency) {
-            $object = new \stdClass;
+        $crypto = array_map(function ($currency) {
+            $object = new \stdClass();
             $object->symbol = $currency['symbol'];
             $object->company = $currency['id'];
             return $object;
         }, $crypto);
 
-        $cryptoSymbols = Auth::user()->symbols('crypto'); 
+        $cryptoSymbols = Auth::user()->symbols('crypto');
         $symbols = [];
-        foreach($cryptoSymbols as $symbol) {
+        foreach ($cryptoSymbols as $symbol) {
             $symbols[$symbol['company']] = $symbol['name'];
         }
 

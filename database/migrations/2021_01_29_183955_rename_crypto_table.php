@@ -13,11 +13,11 @@ class RenameCryptoTable extends Migration
      */
     public function up()
     {
-      Schema::table('crypto', function (Blueprint $table) {
-         $table->dropUnique(['symbol']);
-     });
+        Schema::table('crypto', function (Blueprint $table) {
+            $table->dropUnique(['symbol']);
+        });
 
-      Schema::rename('crypto', 'symbols');
+        Schema::rename('crypto', 'symbols');
     }
 
     /**
@@ -27,10 +27,10 @@ class RenameCryptoTable extends Migration
      */
     public function down()
     {
-       Schema::rename('symbols', 'crypto');
+        Schema::rename('symbols', 'crypto');
 
-       Schema::table('crypto', function (Blueprint $table) {
-         $table->string('symbol')->unique()->change();
-     });
+        Schema::table('crypto', function (Blueprint $table) {
+            $table->string('symbol')->unique()->change();
+        });
     }
 }

@@ -28,7 +28,7 @@ class EditCryptoTableSymbolToString extends Migration
      */
     public function down()
     {
-        if(!Type::hasType('char')) {
+        if (!Type::hasType('char')) {
             Type::addType('char', StringType::class);
         }
 

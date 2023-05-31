@@ -11,12 +11,13 @@ use App\Models\User;
 
 class SignupController extends Controller
 {
-    public function show() {
+    public function show()
+    {
         return view('auth.signup');
     }
 
-    public function signup(Request $request) {
-        
+    public function signup(Request $request)
+    {
         $request->validate([
             'name' => ['required'],
             'email' => ['required', 'email'],
@@ -29,7 +30,7 @@ class SignupController extends Controller
 
         $user = User::firstWhere('email', $email);
 
-        if($user) {
+        if ($user) {
             $request->session()->flash('error', 'User with email exists');
             return back()->withInput();
         }
@@ -42,7 +43,7 @@ class SignupController extends Controller
             'password' => Hash::make($password),
             'activation_token' => $token,
         ]);
-        
+
         Mail::to($user)->send(new VerifyEmail($user));
         $request->session()->flash('message', 'Continue at your email');
         return back();
@@ -51,13 +52,13 @@ class SignupController extends Controller
     public function verifyEmail(Request $request, $token)
     {
         $user = User::firstWhere('activation_token', $token);
-        
-        if(!$user) {
+
+        if (!$user) {
             $request->session()->flash('error', 'Email verification failed');
             return redirect()->route('signup');
         }
 
-        $user->activation_token = NULL;
+        $user->activation_token = null;
         $user->save();
         Auth::login($user);
         $request->session()->regenerate();

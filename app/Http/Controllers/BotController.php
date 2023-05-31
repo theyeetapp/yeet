@@ -20,7 +20,7 @@ class BotController extends Controller
 
         $user = User::firstWhere('email', $email);
 
-        if(!$user) {
+        if (!$user) {
             return [
                 'message' => 'user does not exist',
                 'errorId' => 'UserDoesNotExist'
@@ -47,7 +47,7 @@ class BotController extends Controller
 
     public function getSubscriptions(User $user, $type='all')
     {
-        if(!in_array($type, $this->types)) {
+        if (!in_array($type, $this->types)) {
             return [
                 'message' => 'unsupported symbol type',
                 'errorId' => 'UnsupportedSymbolType'
@@ -74,7 +74,7 @@ class BotController extends Controller
 
         $user = User::firstWhere('email', $email);
 
-        if(!$user || !$user->telegram_id) {
+        if (!$user || !$user->telegram_id) {
             return [
                 'message' => 'user does not exist',
                 'errorId' => 'UserDoesNotExist'
