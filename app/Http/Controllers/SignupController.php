@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\VerifyEmail;
+use App\Mail\Cyclone;
 use App\Models\User;
 
 class SignupController extends Controller
@@ -44,7 +43,12 @@ class SignupController extends Controller
             'activation_token' => $token,
         ]);
 
-        Mail::to($user)->send(new VerifyEmail($user));
+        $mailVariables = [
+            'app_url' => config('app.url'),
+            'name' => explode(' ', $user->name, 2)[1],
+            'token' => $user->activation_token,
+        ];
+        Cyclone::send('VERIFY_EMAIL', $mailVariables, [$user->email]);
         $request->session()->flash('message', 'Continue at your email');
         return back();
     }

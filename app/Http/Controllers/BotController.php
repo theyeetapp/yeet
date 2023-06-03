@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\Models\User;
 use App\Models\Symbol;
-use App\Events\BotAuthentication;
-use App\Events\ChangeTelegramAccount;
+use App\Mail\Cyclone;
 
 class BotController extends Controller
 {
@@ -27,7 +25,12 @@ class BotController extends Controller
             ];
         }
 
-        event(new BotAuthentication($user, $code));
+        $mailVariables = [
+            'name' => explode(' ', $user->name, 2)[1],
+            'code' => $code,
+        ];
+
+        Cyclone::send('VERIFY_TELEGRAM', $mailVariables, [ $user->email ]);
 
         return [
             'message' => 'authentication mail sent successfully',
@@ -81,7 +84,12 @@ class BotController extends Controller
             ];
         }
 
-        event(new ChangeTelegramAccount($user, $code));
+        $mailVariables = [
+            'name' => explode(' ', $user->name, 2)[1],
+            'code' => $code,
+        ];
+
+        Cyclone::send('UPDATE_TELEGRAM', $mailVariables, [ $user->email ]);
 
         return [
             'message' => 'telegram update email sent successfully',

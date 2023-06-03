@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\PasswordReset;
-use App\Mail\PasswordReset as ResetMail;
+use App\Mail\Cyclone;
 
 class PasswordResetsController extends Controller
 {
@@ -41,7 +40,13 @@ class PasswordResetsController extends Controller
             'expires_in' => $expiresIn
         ]);
 
-        Mail::to($user)->send(new ResetMail($user, $token));
+        $mailVariables = [
+            'app_url' => config('app.url'),
+            'name' => explode(' ', $user->name, 2)[1],
+            'token' => $reset->token,
+        ];
+        Cyclone::send('RESET_PASSWORD', $mailVariables, [ $user->email ]);
+
         return back()->with('message', 'Continue at your email');
     }
 
