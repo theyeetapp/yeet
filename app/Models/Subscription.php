@@ -9,10 +9,11 @@ use App\Models\Symbol;
 class Subscription extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = ['user_id', 'symbol_id'];
 
-    public function symbol() {
+    public function symbol()
+    {
         return $this->belongsTo(Symbol::class);
     }
 }

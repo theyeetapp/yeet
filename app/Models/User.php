@@ -15,7 +15,8 @@ use App\Models\Subscription;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -52,34 +53,37 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function avatar() {
+    public function avatar()
+    {
         return $this->hasOne(Avatar::class);
     }
 
-    public function symbols($type = null) {
-
+    public function symbols($type = null)
+    {
         $symbolIds = Subscription::select('symbol_id')
         ->where('user_id', $this->id)
         ->get()
         ->toArray();
 
-        if($type) {
+        if ($type) {
             return Symbol::where('type', $type)
             ->whereIn('id', $symbolIds)
             ->get()
             ->toArray();
         }
-    
+
         return Symbol::whereIn('id', $symbolIds)
         ->get()
         ->toArray();
     }
 
-    public function subscriptionsCount() {
+    public function subscriptionsCount()
+    {
         return $this->hasMany(Subscription::class)->count();
     }
 
-    public function subscriptions($skip, $take) {
+    public function subscriptions($skip, $take)
+    {
         return $this->hasMany(Subscription::class)
         ->orderBy('created_at', 'desc')
         ->skip($skip)

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\AuthController;
@@ -22,8 +21,7 @@ use App\Http\Controllers\PasswordResetsController;
 |
 */
 
-Route::middleware('guest')->group(function() {
-    
+Route::middleware('guest')->group(function () {
     Route::view('/', 'index')->name('index');
 
     Route::get('/signup', [SignupController::class, 'show'])->name('signup');
@@ -39,9 +37,9 @@ Route::middleware('guest')->group(function() {
     Route::get('/password/change/send', [PasswordResetsController::class, 'sendEmail'])->name('reset.mail');
     Route::get('/password/change/{token}', [PasswordResetsController::class, 'show'])->name('reset.show');
     Route::post('/password/change', [PasswordResetsController::class, 'reset'])->name('password.reset');
-}); 
+});
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     Route::get('/subscriptions', [SubscriptionsController::class, 'show'])->name('subscriptions');
     Route::post('/subscriptions/{type}/update', [SubscriptionsController::class, 'update'])->name('subscriptions.update');
     Route::get('/stocks', StocksController::class)->name('stocks');

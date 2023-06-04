@@ -11,16 +11,17 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    public function show() {
+    public function show()
+    {
         return view('auth.login');
     }
 
-    public function login(Request $request) {
-
+    public function login(Request $request)
+    {
         $credentials = $request->only(['email', 'password']);
-        $credentials['activation_token'] = NULL;
+        $credentials['activation_token'] = null;
 
-        if(Auth::attempt($credentials, $request->remember)) {
+        if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
             $request->session()->flash('message', 'Logged in successfully');
             return redirect()->intended('subscriptions');
@@ -30,16 +31,18 @@ class AuthController extends Controller
         return back()->withInput();
     }
 
-    public function authGoogle() {
+    public function authGoogle()
+    {
         return Socialite::driver('google')->redirect();
     }
 
-    public function googleLogin(Request $request) {
+    public function googleLogin(Request $request)
+    {
         $authUser = Socialite::driver('google')->user();
         $googleId = $authUser->getId();
         $googleUser = GoogleUser::firstWhere('google_id', $googleId);
 
-        if($googleUser) {
+        if ($googleUser) {
             $user = User::firstWhere('id', $googleUser->user_id);
             Auth::login($user, true);
             $request->session()->regenerate();
@@ -49,7 +52,7 @@ class AuthController extends Controller
 
         $user = User::firstWhere('email', $authUser->getEmail());
 
-        if($user) {
+        if ($user) {
             Auth::login($user, true);
             $request->session()->regenerate();
             $request->session()->flash('message', 'Logged in successfully');
@@ -66,7 +69,7 @@ class AuthController extends Controller
         $user->avatar()->create([
             'url' => $authUser->getAvatar(),
         ]);
-        
+
         GoogleUser::create([
             'google_id' => $googleId,
             'user_id' => $user->id
@@ -76,10 +79,10 @@ class AuthController extends Controller
         $request->session()->regenerate();
         $request->session()->flash('message', 'Logged in successfully');
         return redirect()->route('subscriptions');
-    }   
+    }
 
-    public function logout(Request $request) {
-        
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

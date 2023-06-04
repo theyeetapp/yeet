@@ -22,36 +22,34 @@ class SearchController extends Controller
         $index = (int)$index;
         $this->symbol = strtolower($request->symbol);
 
-        if(!$request->page) {
+        if (!$request->page) {
             $page = 1;
-        }
-        else if((int)$request->page > 16) {
+        } elseif ((int)$request->page > 16) {
             return redirect()->route('search', ['symbol' => $this->symbol, 'index' => $index]);
-        }
-        else {
+        } else {
             $page = (int)$request->page;
         }
 
         $stocks = $this->getStockResults();
         $crypto = $this->getCryptoResults();
         $results = array_merge($stocks, $crypto);
-        usort($results, function($first, $second) {
+        usort($results, function ($first, $second) {
             return strcmp($first->symbol, $second->symbol);
         });
-        
+
         $total = count($results);
         $numElements = config('app.elements_per_page');
         $maxIndex = (int)ceil($total / pow($numElements, 2));
 
-        if($index > $maxIndex && ($maxIndex !== 0)) {
+        if ($index > $maxIndex && ($maxIndex !== 0)) {
             return redirect()->route('search', ['symbol' => $this->symbol]);
         }
- 
-        if($index === $maxIndex && ($maxIndex !== 0)) {
+
+        if ($index === $maxIndex && ($maxIndex !== 0)) {
             $rem = $total - ($index - 1) * pow($numElements, 2);
             $remPages = ceil($rem / $numElements);
-           
-            if($page > $remPages) {
+
+            if ($page > $remPages) {
                 return redirect()->route('search', ['symbol' => $this->symbol, 'index' => $index]);
             }
         }
@@ -61,7 +59,7 @@ class SearchController extends Controller
 
         $subscribedSymbols = Auth::user()->symbols();
         $symbols = [];
-        foreach($subscribedSymbols as $symbol) {
+        foreach ($subscribedSymbols as $symbol) {
             $symbols[$symbol['company']] = $symbol['name'];
         }
 
@@ -88,8 +86,8 @@ class SearchController extends Controller
         fclose($fileHandler);
 
         $stocks = json_decode($string)->stocks;
-        $stocks = array_filter($stocks, function($stock) {
-            if(strtolower(substr($stock->symbol, 0, strlen($this->symbol))) === $this->symbol) {
+        $stocks = array_filter($stocks, function ($stock) {
+            if (strtolower(substr($stock->symbol, 0, strlen($this->symbol))) === $this->symbol) {
                 $stock->type = 'stock';
                 return $stock;
             }
@@ -97,7 +95,7 @@ class SearchController extends Controller
         return $stocks;
     }
 
-    public function getCryptoResults() 
+    public function getCryptoResults()
     {
         $fileName = 'data/crypto.json';
         $fileHandler= fopen($fileName, 'r') or die($fileName . ' cannot be opened');
@@ -105,13 +103,13 @@ class SearchController extends Controller
         fclose($fileHandler);
 
         $crypto = json_decode($string, true)['crypto'];
-        $crypto = array_filter($crypto, function($currency) {
-            if(strtolower(substr($currency['symbol'], 0, strlen($this->symbol))) === $this->symbol) {
+        $crypto = array_filter($crypto, function ($currency) {
+            if (strtolower(substr($currency['symbol'], 0, strlen($this->symbol))) === $this->symbol) {
                 return $currency;
             }
         });
-        $crypto = array_map(function($currency) {
-            $object = new \stdClass;
+        $crypto = array_map(function ($currency) {
+            $object = new \stdClass();
             $object->symbol = $currency['symbol'];
             $object->company = $currency['id'];
             $object->type = 'crypto';

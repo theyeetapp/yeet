@@ -23,6 +23,5 @@ class DeletePasswordResetsTable extends Migration
      */
     public function down()
     {
-       
     }
 }

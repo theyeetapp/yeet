@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\PasswordReset;
-use App\Mail\PasswordReset as ResetMail;
+use App\Mail\Cyclone;
 
 class PasswordResetsController extends Controller
 {
     public $request;
 
-    public function __construct(Request $request) {
+    public function __construct(Request $request)
+    {
         $this->request = $request;
     }
 
-    public function sendEmail() {
+    public function sendEmail()
+    {
         $this->request->validate([
             'email' => ['required', 'email'],
         ]);
@@ -25,7 +26,7 @@ class PasswordResetsController extends Controller
         $email = $this->request->email;
         $user = User::firstWhere('email', $email);
 
-        if(!$user) {
+        if (!$user) {
             return back()->with('message', 'Continue at your email');
         }
 
@@ -39,21 +40,28 @@ class PasswordResetsController extends Controller
             'expires_in' => $expiresIn
         ]);
 
-        Mail::to($user)->send(new ResetMail($user, $token));
+        $mailVariables = [
+            'app_url' => config('app.url'),
+            'name' => explode(' ', $user->name, 2)[1],
+            'token' => $reset->token,
+        ];
+        Cyclone::send('RESET_PASSWORD', $mailVariables, [ $user->email ]);
+
         return back()->with('message', 'Continue at your email');
     }
 
-    public function show($token) {
+    public function show($token)
+    {
         $reset = PasswordReset::firstWhere('token', $token);
 
-        if(!$reset) {
+        if (!$reset) {
             $this->request->session()->flash('error', 'Invalid password reset token');
             return redirect()->route('login');
         }
 
         date_default_timezone_set('Africa/Lagos');
 
-        if(time() > $reset->expires_in) {
+        if (time() > $reset->expires_in) {
             $this->request->session()->flash('error', 'Expired password reset token');
             return redirect()->route('login');
         }
@@ -62,7 +70,8 @@ class PasswordResetsController extends Controller
         ->with('token', $token);
     }
 
-    public function reset() {
+    public function reset()
+    {
         $this->request->validate([
             'password' => ['required', 'min:8'],
             'token' => ['required', 'min:50']
