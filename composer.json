@@ -12,7 +12,6 @@
         "cloudinary/cloudinary_php": "^2.0",
         "doctrine/dbal": "^3.0",
         "fideloper/proxy": "^4.4",
-        "friendsofphp/php-cs-fixer": "3.13",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^8.12",
