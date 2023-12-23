@@ -35,3 +35,9 @@ Route::get('/users/{user}', function (User $user) {
 Route::get('/users/{user}/subscriptions/{type?}', [BotController::class, 'getSubscriptions']);
 
 Route::get('/symbols/{type}', [BotController::class, 'getSymbols']);
+
+Route::post('/ping', function () {
+    return [
+        'status' => 'ok'
+    ];
+});
