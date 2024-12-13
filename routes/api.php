@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\BotController;
 
 /*
@@ -16,22 +17,36 @@ use App\Http\Controllers\BotController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/api/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/bot/authenticate', [BotController::class, 'authenticate']);
+Route::post('/api/bot/authenticate', [BotController::class, 'authenticate']);
 
-Route::post('/bot/update', [BotController::class, 'update']);
+Route::post('/api/bot/update', [BotController::class, 'update']);
 
-Route::post('/users/{user}/telegram', [BotController::class, 'updateUser']); 
+Route::post('/api/users/{user}/telegram', [BotController::class, 'updateUser']);
 
-Route::get('/users/{user}', function(User $user) {
+Route::get('/api/users/{user}', function (User $user) {
     return [
-        'user' => $user
+        'user' => $user,
     ];
 });
 
-Route::get('/users/{user}/subscriptions/{type?}', [BotController::class, 'getSubscriptions']);
+Route::get('/api/users/{user}/subscriptions/{type?}', [BotController::class, 'getSubscriptions']);
 
-Route::get('/symbols/{type}', [BotController::class, 'getSymbols']);
+Route::get('/api/symbols/{type}', [BotController::class, 'getSymbols']);
+
+Route::post('/ping', function () {
+    $databaseStatus = "healthy";
+
+    try {
+        DB::connection()->getPdo();
+    } catch (\Exception $exception) {
+        $databaseStatus = "unhealthy";
+    }
+
+    return [
+        "database" => $databaseStatus,
+    ];
+});
